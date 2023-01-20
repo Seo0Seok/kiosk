@@ -1,5 +1,6 @@
 package Project;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -29,24 +30,28 @@ public class MyDialog2 extends JDialog { // 장바구니
 	JLabel jb2 = new JLabel("수량");
 	JLabel jb3 = new JLabel("가격");
 	
+	JLabel menu = new JLabel("", JLabel.LEFT);
+	JLabel num = new JLabel("", JLabel.CENTER);
+	JLabel price = new JLabel("", JLabel.LEFT);
+	
 	private MyPanel panel = new MyPanel();
-	JTextArea tf = new JTextArea("");
 	JPanel textpanel = new JPanel();
 	
 	public MyDialog2(Chicken chicken, String title) {
 		super(chicken, title);
 		setResizable(false);
-
+		textpanel.setLayout(new BorderLayout());
+		
 		jb.setSize(250, 50);
 		jb.setLocation(30, 30);
 		jb.setFont(new Font("굴림", Font.BOLD, 50));
 
 		jb1.setSize(150, 50);
-		jb1.setLocation(50, 105);
+		jb1.setLocation(30, 105);
 		jb1.setFont(new Font("굴림", Font.BOLD, 30));
 
 		jb2.setSize(150, 50);
-		jb2.setLocation(220, 105);
+		jb2.setLocation(210, 105);
 		jb2.setFont(new Font("굴림", Font.BOLD, 30));
 
 		jb3.setSize(150, 50);
@@ -89,6 +94,18 @@ public class MyDialog2 extends JDialog { // 장바구니
 		okbt.setBackground(Color.RED);
 		okbt.setFont(new Font("굴림", Font.BOLD, 20));
 		
+		menu.setFont(new Font("굴림", Font.BOLD, 30));
+		menu.setSize(130, 500);
+		menu.setLocation(0, 0);
+		
+		num.setFont(new Font("굴림", Font.BOLD, 30));
+		num.setSize(100, 500);
+		num.setLocation(170, 0);
+		
+		price.setFont(new Font("굴림", Font.BOLD, 30));
+		price.setSize(130, 500);
+		price.setLocation(310, 0);
+		
 		add(jb);
 		add(jb1);
 		add(jb2);
@@ -98,13 +115,13 @@ public class MyDialog2 extends JDialog { // 장바구니
 		add(orderbt);
 		add(resetbt);
 		add(tableNum);
-
 		JScrollPane js = new JScrollPane(textpanel);
-		tf.setFont(new Font("굴림", Font.BOLD, 35));
-		tf.setEnabled(false);
+		js.setViewportView(textpanel);
 		js.setBounds(30, 170, 425, 450);
-		textpanel.setBackground(Color.WHITE);
-		textpanel.add(tf);
+		textpanel.add(menu, new BorderLayout().WEST);
+		textpanel.add(num, new BorderLayout().CENTER);
+		textpanel.add(price, new BorderLayout().EAST);
+		
 		add(js);
 		add(panel);
 		
@@ -113,17 +130,26 @@ public class MyDialog2 extends JDialog { // 장바구니
 		orderbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tf.setText("");
-				sumlb.setText("");
-				JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.", "주문완료", JOptionPane.INFORMATION_MESSAGE);
+				if(menu.getText().equals("") && num.getText().equals("") && price.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					num.setText("");
+					price.setText("");
+					sumlb.setText("합계 : ");
+					
+					JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.", "주문완료", JOptionPane.INFORMATION_MESSAGE);
+				}
 				}
 		});
 		
 		closebt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tf.setText("");
-				sumlb.setText("");
+				menu.setText("");
+				num.setText("");
+				price.setText("");
+				sumlb.setText("합계 : ");
 				setVisible(false); // 비활성화
 			}
 		});
@@ -131,8 +157,10 @@ public class MyDialog2 extends JDialog { // 장바구니
 		resetbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tf.setText("");
-				sumlb.setText("");
+				menu.setText("");
+				num.setText("");
+				price.setText("");
+				sumlb.setText("합계 : ");
 			}
 		});
 	}

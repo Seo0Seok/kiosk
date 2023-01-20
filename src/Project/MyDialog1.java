@@ -1,8 +1,12 @@
 package Project;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,9 +28,9 @@ public class MyDialog1 extends JDialog { // 주문내역
 	JLabel sumlb = new JLabel("합계 :   ");
 	JButton closebt = new JButton("닫기");
 	
-	JLabel menu = new JLabel("", JLabel.CENTER);
+	JLabel menu = new JLabel("", JLabel.LEFT);
 	JLabel num = new JLabel("", JLabel.CENTER);
-	JLabel price = new JLabel("");
+	JLabel price = new JLabel("", JLabel.LEFT);
 
 	private MyPanel panel = new MyPanel();
 	JPanel textpanel = new JPanel();
@@ -34,18 +38,18 @@ public class MyDialog1 extends JDialog { // 주문내역
 	public MyDialog1(Chicken chicken, String title) {
 		super(chicken, title);
 		setResizable(false);
-		textpanel.setLayout(null);
+		textpanel.setLayout(new BorderLayout());
 		
 		jb.setSize(250, 50);
 		jb.setLocation(30, 30);
 		jb.setFont(new Font("굴림", Font.BOLD, 50));
 
 		jb1.setSize(150, 50);
-		jb1.setLocation(50, 105);
+		jb1.setLocation(30, 105);
 		jb1.setFont(new Font("굴림", Font.BOLD, 30));
 
 		jb2.setSize(150, 50);
-		jb2.setLocation(220, 105);
+		jb2.setLocation(210, 105);
 		jb2.setFont(new Font("굴림", Font.BOLD, 30));
 
 		jb3.setSize(150, 50);
@@ -57,22 +61,10 @@ public class MyDialog1 extends JDialog { // 주문내역
 		sumlb.setFont(new Font("굴림", Font.BOLD, 30));
 
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
-		menu.setSize(130, 500);
-		menu.setLocation(0, 0);
-		menu.setOpaque(true);
-		menu.setBackground(Color.RED);
 		
 		num.setFont(new Font("굴림", Font.BOLD, 30));
-		num.setSize(100, 500);
-		num.setLocation(170, 0);
-		num.setOpaque(true);
-		num.setBackground(Color.blue);
 		
 		price.setFont(new Font("굴림", Font.BOLD, 30));
-		price.setSize(130, 500);
-		price.setLocation(310, 0);
-		price.setOpaque(true);
-		price.setBackground(Color.green);
 		
 		tableNum.setSize(150, 50);
 		tableNum.setLocation(300, 30);
@@ -96,14 +88,14 @@ public class MyDialog1 extends JDialog { // 주문내역
 		add(closebt);
 		add(tableNum);
 		JScrollPane js = new JScrollPane(textpanel);
-		// setFont(new Font("굴림", Font.BOLD, 35));
 		js.setBounds(30, 170, 425, 450);
-		textpanel.add(menu);
-		textpanel.add(num);
-		textpanel.add(price);
+		textpanel.add(menu, new BorderLayout().WEST);
+		textpanel.add(num, new BorderLayout().CENTER);
+		textpanel.add(price, new BorderLayout().EAST);
 		
 		add(js);
 		add(panel);
+
 
 		setSize(500, 850);
 
