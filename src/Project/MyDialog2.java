@@ -32,7 +32,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 	
 	JLabel menu = new JLabel("", JLabel.LEFT);
 	JLabel num = new JLabel("", JLabel.CENTER);
-	JLabel price = new JLabel("", JLabel.LEFT);
+	JLabel price = new JLabel("", JLabel.RIGHT);
 	
 	private MyPanel panel = new MyPanel();
 	JPanel textpanel = new JPanel();
@@ -95,16 +95,13 @@ public class MyDialog2 extends JDialog { // 장바구니
 		okbt.setFont(new Font("굴림", Font.BOLD, 20));
 		
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
-		menu.setSize(130, 500);
-		menu.setLocation(0, 0);
+		menu.setVerticalAlignment(JLabel.TOP);
 		
 		num.setFont(new Font("굴림", Font.BOLD, 30));
-		num.setSize(100, 500);
-		num.setLocation(170, 0);
+		num.setVerticalAlignment(JLabel.TOP);
 		
 		price.setFont(new Font("굴림", Font.BOLD, 30));
-		price.setSize(130, 500);
-		price.setLocation(310, 0);
+		price.setVerticalAlignment(JLabel.TOP);
 		
 		add(jb);
 		add(jb1);

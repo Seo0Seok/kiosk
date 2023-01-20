@@ -30,7 +30,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 	
 	JLabel menu = new JLabel("", JLabel.LEFT);
 	JLabel num = new JLabel("", JLabel.CENTER);
-	JLabel price = new JLabel("", JLabel.LEFT);
+	JLabel price = new JLabel("", JLabel.RIGHT);
 
 	private MyPanel panel = new MyPanel();
 	JPanel textpanel = new JPanel();
@@ -61,10 +61,13 @@ public class MyDialog1 extends JDialog { // 주문내역
 		sumlb.setFont(new Font("굴림", Font.BOLD, 30));
 
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
+		menu.setVerticalAlignment(JLabel.TOP);
 		
 		num.setFont(new Font("굴림", Font.BOLD, 30));
+		num.setVerticalAlignment(JLabel.TOP);
 		
 		price.setFont(new Font("굴림", Font.BOLD, 30));
+		price.setVerticalAlignment(JLabel.TOP);
 		
 		tableNum.setSize(150, 50);
 		tableNum.setLocation(300, 30);

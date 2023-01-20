@@ -385,36 +385,30 @@ public class Chicken extends JFrame {
 					String tempMenu = dialog1.menu.getText();
 					String menustr = "";
 					if(tempMenu.equals("")) {
-						menustr = "<html><body style='text-align:center;'>" + 
-								 menu[j] + "</html>"; 
+						menustr = "<html>" + menu[j] + "</html>"; 
 					} else {
-						tempMenu = dialog1.menu.getText().substring(39, dialog1.menu.getText().length()-7);
-						menustr = "<html><body style='text-align:center;'>" + 
-								tempMenu + "<br>" + menu[j] + "</html>"; 
+						tempMenu = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7); // 6번째 부터 끝에서 -7번째 자리까지 자름
+						menustr = "<html>" + tempMenu + "<br>" + menu[j] + "</html>"; 
 					}
 					dialog1.menu.setText(menustr);
 					
 					String tempNum = dialog1.num.getText();
 					String numstr = "";
 					if(tempNum.equals("")) {
-						numstr = "<html><body style='text-align:center;'>" + 
-								cnt + "</html>"; 
+						numstr = "<html>" + cnt + "</html>"; 
 					} else {
-						tempNum = dialog1.num.getText().substring(39, dialog1.num.getText().length()-7);
-						numstr = "<html><body style='text-align:center;'>" + 
-								tempNum + "<br>" + cnt + "</html>"; 
+						tempNum = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
+						numstr = "<html>" + tempNum + "<br>" + cnt + "</html>"; 
 					}
 					dialog1.num.setText(numstr);
 					
 					String tempPrice = dialog1.price.getText();
 					String pricestr = "";
 					if(tempPrice.equals("")) {
-						pricestr = "<html><body style='text-align:center;'>" + 
-								price[j] + "</html>"; 
+						pricestr = "<html>" + price[j] + "</html>"; 
 					} else {
-						tempPrice = dialog1.price.getText().substring(39, dialog1.price.getText().length()-7);
-						pricestr = "<html><body style='text-align:center;'>" + 
-								tempPrice + "<br>" + price[j] + "</html>"; 
+						tempPrice = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
+						pricestr = "<html>" + tempPrice + "<br>" + price[j] + "</html>"; 
 					}
 					dialog1.price.setText(pricestr);
 					
@@ -423,40 +417,34 @@ public class Chicken extends JFrame {
 					String tempMenu2 = dialog2.menu.getText();
 					String menustr2 = "";
 					if(tempMenu2.equals("")) {
-						menustr2 = "<html><body style='text-align:center;'>" + 
-								 menu[j] + "</html>"; 
+						menustr2 = "<html>" + menu[j] + "</html>"; 
 					} else {
-						tempMenu2 = dialog2.menu.getText().substring(39, dialog2.menu.getText().length()-7);
-						menustr2 = "<html><body style='text-align:center;'>" + 
-								tempMenu2 + "<br>" + menu[j] + "</html>"; 
+						tempMenu2 = dialog2.menu.getText().substring(6, dialog2.menu.getText().length()-7);
+						menustr2 = "<html>" + tempMenu2 + "<br>" + menu[j] + "</html>"; 
 					}
 					dialog2.menu.setText(menustr2);
 					
 					String tempNum2 = dialog2.num.getText();
 					String numstr2 = "";
 					if(tempNum2.equals("")) {
-						numstr2 = "<html><body style='text-align:center;'>" + 
-								cnt + "</html>"; 
+						numstr2 = "<html>" + cnt + "</html>"; 
 					} else {
-						tempNum2 = dialog1.num.getText().substring(39, dialog2.num.getText().length()-7);
-						numstr2 = "<html><body style='text-align:center;'>" + 
-								tempNum2 + "<br>" + cnt + "</html>"; 
+						tempNum2 = dialog2.num.getText().substring(6, dialog2.num.getText().length()-7);
+						numstr2 = "<html>" + tempNum2 + "<br>" + cnt + "</html>"; 
 					}
 					dialog2.num.setText(numstr2);
 					
 					String tempPrice2 = dialog2.price.getText();
 					String pricestr2 = "";
 					if(tempPrice2.equals("")) {
-						pricestr2 = "<html><body style='text-align:center;'>" + 
-								price[j] + "</html>"; 
+						pricestr2 = "<html>" + price[j] + "</html>"; 
 					} else {
-						tempPrice2 = dialog2.price.getText().substring(39, dialog2.price.getText().length()-7);
-						pricestr2 = "<html><body style='text-align:center;'>" + 
-								tempPrice2 + "<br>" + price[j] + "</html>"; 
+						tempPrice2 = dialog2.price.getText().substring(6, dialog2.price.getText().length()-7);
+						pricestr2 = "<html>" + tempPrice2 + "<br>" + price[j] + "</html>"; 
 					}
 					dialog2.price.setText(pricestr2);
 					
-					dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
+					dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
 						
 					} else {
 						JOptionPane.showMessageDialog(null, "1개 이상을 선택하세요.", "알림", JOptionPane.ERROR_MESSAGE);
