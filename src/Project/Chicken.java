@@ -456,7 +456,7 @@ public class Chicken extends JFrame {
 					}
 					dialog2.price.setText(pricestr2);
 					
-					dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
+					dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
 						
 					} else {
 						JOptionPane.showMessageDialog(null, "1개 이상을 선택하세요.", "알림", JOptionPane.ERROR_MESSAGE);
