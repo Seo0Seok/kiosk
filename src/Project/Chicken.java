@@ -356,21 +356,47 @@ public class Chicken extends JFrame {
 					dialog2.tf.append(menu[j] + "        " + cnt + "    " + (price[j] * cnt) + "원" + "\n");
 					dialog2.setVisible(true); // 비활성화
 					dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
-					
-						String menustr = "<html><body style='text-align:center;'>" 
-							      + menu[j] + "<br>" + dialog1.menu.getText() + "</html>"; 
-						dialog1.menu.setText(menustr);
+					String tempMenu = dialog1.menu.getText();
+					String menustr = "";
+					if(tempMenu.equals("")) {
+						menustr = "<html><body style='text-align:center;'>" + 
+								 menu[j] + "</html>"; 
+					} else {
+						tempMenu = dialog1.menu.getText().substring(39, dialog1.menu.getText().length()-7);
+						menustr = "<html><body style='text-align:center;'>" + 
+								tempMenu + "<br>" + menu[j] + "</html>"; 
+					}
+					dialog1.menu.setText(menustr);
 
-						String numstr = "<html><body style='text-align:center;'>" 
-					            + cnt + "<br>" + dialog1.num.getText() + "</html>"; 
-						dialog1.num.setText(numstr);
+					String tempNum = dialog1.num.getText();
+					String numstr = "";
+					if(tempNum.equals("")) {
+						numstr = "<html><body style='text-align:center;'>" + 
+								cnt + "</html>"; 
+					} else {
+						tempNum = dialog1.num.getText().substring(39, dialog1.num.getText().length()-7);
+						numstr = "<html><body style='text-align:center;'>" + 
+								tempNum + "<br>" + cnt + "</html>"; 
+					}
+					dialog1.num.setText(numstr);
+			
+//					String numstr = "<html><body style='text-align:center;'>" 
+//				            + cnt + "<br>" + dialog1.num.getText() + "</html>"; 
+//					dialog1.num.setText(numstr);
 				
-						String pricestr = "<html><body style='text-align:center;'>" 
-						          + price[j] + "<br>" + dialog1.price.getText() + "</html>";
-						dialog1.price.setText(pricestr);
-					
-				
-						dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
+					String tempPrice = dialog1.price.getText();
+					String pricestr = "";
+					if(tempPrice.equals("")) {
+						pricestr = "<html><body style='text-align:center;'>" + 
+								price[j] + "</html>"; 
+					} else {
+						tempPrice = dialog1.price.getText().substring(39, dialog1.price.getText().length()-7);
+						pricestr = "<html><body style='text-align:center;'>" + 
+								tempPrice + "<br>" + price[j] + "</html>"; 
+					}
+					dialog1.price.setText(pricestr);
+			
+					dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
 					
 				}
 			});
