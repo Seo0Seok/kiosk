@@ -4,21 +4,21 @@ LIMIT 0, 1000
 
 -- Date: 2023-01-25 11:46
 */
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (0,'ì˜›ë‚ í†µë‹­',9000,10,'image/ì˜›ë‚ í†µë‹­.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (1,'ë‹­ê°•ì •',10000,10,'image/ë‹­ê°•ì •.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (2,'ë˜¥ì§‘íŠ€ê¹€',10000,10,'image/ë˜¥ì§‘íŠ€ê¹€.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (3,'ìˆœì‚´íŠ€ê¹€',10000,10,'image/ìˆœì‚´íŠ€ê¹€.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (4,'ìœ™ë´‰',10000,10,'image/ìœ™ë´‰.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (5,'ë‹­ë‹¤ë¦¬',14000,10,'image/ë‹­ë‹¤ë¦¬.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (6,'ë¬´ë¼ˆë‹­ë°œ',14000,10,'image/ë¬´ë¼ˆë‹­ë°œ.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (7,'ì˜¤ë…íƒ•',6000,10,'image/ì˜¤ë…íƒ•.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (8,'ë–¡ë³¶ì´',5000,10,'image/ë–¡ë³¶ì´.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (9,'ì¹˜ì¦ˆë³¼',4000,10,'image/ì¹˜ì¦ˆë³¼.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (10,'ì¼€ì´ì¤€ê°ì',4000,10,'image/ì¼€ì´ì¤€ê°ì.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (11,'ì”¨ì•—í˜¸ë–¡',4000,10,'image/ì”¨ì•—í˜¸ë–¡.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (12,'ì½”ì¹´ì½œë¼',1500,10,'image/ì½”ì¹´ì½œë¼.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (13,'ì‚¬ì´ë‹¤',1500,10,'image/ì‚¬ì´ë‹¤.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (14,'ì°¸ì´ìŠ¬',4000,10,'image/ì°¸ì´ìŠ¬.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (15,'ì²˜ìŒì²˜ëŸ¼',4000,10,'image/ì²˜ìŒì²˜ëŸ¼.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (16,'ìƒë§¥ì£¼',4000,10,'image/ìƒë§¥ì£¼.png');
-INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (17,'ì¹´ìŠ¤',4000,10,'image/ì¹´ìŠ¤.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (0,'¿¾³¯Åë´ß',9000,10,'image/¿¾³¯Åë´ß.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (1,'´ß°­Á¤',10000,10,'image/´ß°­Á¤.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (2,'¶ËÁıÆ¢±è',10000,10,'image/¶ËÁıÆ¢±è.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (3,'¼ø»ìÆ¢±è',10000,10,'image/¼ø»ìÆ¢±è.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (4,'À®ºÀ',10000,10,'image/À®ºÀ.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (5,'´ß´Ù¸®',14000,10,'image/´ß´Ù¸®.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (6,'¹«»À´ß¹ß',14000,10,'image/¹«»À´ß¹ß.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (7,'¿Àµ­ÅÁ',6000,10,'image/¿Àµ­ÅÁ.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (8,'¶±ººÀÌ',5000,10,'image/¶±ººÀÌ.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (9,'Ä¡Áîº¼',4000,10,'image/Ä¡Áîº¼.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (10,'ÄÉÀÌÁØ°¨ÀÚ',4000,10,'image/ÄÉÀÌÁØ°¨ÀÚ.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (11,'¾¾¾ÑÈ£¶±',4000,10,'image/¾¾¾ÑÈ£¶±.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (12,'ÄÚÄ«Äİ¶ó',1500,10,'image/ÄÚÄ«Äİ¶ó.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (13,'»çÀÌ´Ù',1500,10,'image/»çÀÌ´Ù.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (14,'ÂüÀÌ½½',4000,10,'image/ÂüÀÌ½½.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (15,'Ã³À½Ã³·³',4000,10,'image/Ã³À½Ã³·³.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (16,'»ı¸ÆÁÖ',4000,10,'image/»ı¸ÆÁÖ.png');
+INSERT INTO `` (`num`,`name`,`price`,`stock`,`address`) VALUES (17,'Ä«½º',4000,10,'image/Ä«½º.png');
