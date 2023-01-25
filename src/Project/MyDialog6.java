@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 public class MyDialog6 extends JDialog { // 재고수정 화면
 	JButton closebt = new JButton("닫기");
 	JButton okbt = new JButton("확인");
-	JLabel menujb = new JLabel("재고 추가할 메뉴를 선택하세요.");
+	JLabel menujb = new JLabel("재고 수정할 메뉴를 선택하세요.");
 	JLabel numjb = new JLabel("개수를 입력하세요.");
 	JTextField menutf = new JTextField(60);
 	JTextField numtf = new JTextField(60);

@@ -20,6 +20,7 @@ public class Chicken extends JFrame {
 	private MyDialog2 dialog2; // 장바구니
 	private MyDialog3 dialog3; // 관리자 로그인 화면
 	int sum = 0; // 가격 총 합
+	int cnt = 0; // 
 	JLabel l[];
 	JLabel stocklb[];
 	String menu[] = new String[18];
@@ -71,7 +72,7 @@ public class Chicken extends JFrame {
 		Panel imgPanel3 = new Panel(); // 음료메뉴 패널
 
 		// 폰트
-		Font font = new Font("굴림", Font.BOLD, 25);
+		Font font = new Font("굴림", Font.BOLD, 22);
 		Font font2 = new Font("굴림", Font.BOLD, 20);
 		Font font3 = new Font("굴림", Font.BOLD, 30);
 
@@ -135,30 +136,12 @@ public class Chicken extends JFrame {
 		jbt2.setBackground(Color.WHITE);
 		jbt2.setFont(font2);
 
-		// 메뉴, 가격 배열에 데이터 넣기
-		int index = 0;
-		try {
-			ResultSet srs = stmt.executeQuery("select * from menu");
-			while (srs.next()) {
-				menu[index] = srs.getString("name");
-				price[index] = srs.getInt("price");
-				stock[index] = srs.getInt("stock");
-				index++;
-				if (index == 18) {
-					index = index - 1;
-					break;
-				}
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL 실행 에러");
-		}
-
 		// 메뉴버튼 메인, 사이드, 음료 각각 나눠서 패널에 추가
 		for (int i = 0; i < menu.length; i++) {
-			bt[i] = new JButton(menu[index]);
+			
+			bt[i] = new JButton(menu[i]);
 			plusbt[i] = new JButton("+");
 			minusbt[i] = new JButton("-");
-			stocklb[i] = new JLabel("재고 : " + stock[i] + "개");
 			num[i] = new TextField("0");
 			if (i < 3) { // 메인버튼 첫 줄 3개
 				bt[i].setBounds(i * 300, 0, 250, 200);
@@ -180,12 +163,14 @@ public class Chicken extends JFrame {
 				imgPanel3.add(bt[i]);
 			}
 
-			ResultSet srs;
 			try {
+				ResultSet srs;
 				srs = stmt.executeQuery("select * from menu where num = " + i + "");
 				if(srs.next()) {
+					menu[i] = srs.getString("name");
+					price[i] = srs.getInt("price");
+					stock[i] = srs.getInt("stock");
 					String address = srs.getString("address");
-					System.out.println(address);
 						icon[i] = new ImageIcon(address); 
 						bt[i].setIcon(icon[i]); 
 				}
@@ -195,17 +180,17 @@ public class Chicken extends JFrame {
 				e1.printStackTrace();
 			}
 			
-
+			
 			l[i] = new JLabel("<html><body style='text-align:center;'>" + menu[i] // 라벨 배열 text 설정
 					+ "<br>" + price[i] + "원" + "</html>", JLabel.CENTER);
-
+			stocklb[i] = new JLabel("재고 : " + stock[i] + "개");
 			stocklb[i].setFont(font3);
 			stocklb[i].setForeground(Color.MAGENTA);
 			num[i].setFont(font3);
 
 			if (i < 3) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 190, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -360,52 +345,108 @@ public class Chicken extends JFrame {
 			bt[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
-					if (Integer.parseInt(num[j].getText()) > 0) {
+					
+					cnt = Integer.parseInt(num[j].getText());
+					stock[j] = stock[j] - cnt;
+					prstock = stock[j];
+					
+					if (Integer.parseInt(num[j].getText()) > 0 && prstock >= 0) {
 						dialog2.setVisible(true);
-						int cnt = Integer.parseInt(num[j].getText());
+						
 						sum += (price[j] * cnt);
+						stocklb[j].setText("재고 : " + prstock + "개");
+						
+						dialog2.closebt.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								try {
+								ResultSet srs;
+								srs = stmt.executeQuery("select * from menu where num = " + j + "");
+								if(srs.next()) {
+									int stockk = srs.getInt("stock");
+									stock[j] = stockk;
+								}
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								stocklb[j].setText("재고 : " + stock[j] + "개");
+								sum = 0;
+								bt[j].setEnabled(true);
+								}
+						});
+						
+						dialog2.resetbt.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								try {
+								ResultSet srs;
+								srs = stmt.executeQuery("select * from menu where num = " + j + "");
+								if(srs.next()) {
+									int stockk = srs.getInt("stock");
+									stock[j] = stockk;
+								}
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								stocklb[j].setText("재고 : " + stock[j] + "개");
+								sum = 0;
+								bt[j].setEnabled(true);
+								}
+						});
+						
 						
 						dialog2.orderbt.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								stock[j] = stock[j] - cnt;
-								prstock = stock[j]; 
+								dialog1.setVisible(true);
+								dialog2.setVisible(false);
+								
+								String query = "update menu set stock = " + prstock + " where name = '" + menu[j] + "'";
+								try {
+									stmt.executeUpdate(query);
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 								stocklb[j].setText("재고 : " + prstock + "개");
+								bt[j].setEnabled(true);
+								
+								String tempMenu = dialog1.menu.getText();
+								String menustr = "";
+								if(tempMenu.equals("")) {
+									menustr = "<html>" + menu[j] + "</html>"; 
+								} else {
+									tempMenu = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7); // 6번째 부터 끝에서 -7번째 자리까지 자름
+									menustr = "<html>" + tempMenu + "<br>" + menu[j] + "</html>"; 
+								}
+								dialog1.menu.setText(menustr);
+								
+								String tempNum = dialog1.num.getText();
+								String numstr = "";
+								if(tempNum.equals("")) {
+									numstr = "<html>" + cnt + "</html>"; 
+								} else {
+									tempNum = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
+									numstr = "<html>" + tempNum + "<br>" + cnt + "</html>"; 
+								}
+								dialog1.num.setText(numstr);
+								
+								String tempPrice = dialog1.price.getText();
+								String pricestr = "";
+								if(tempPrice.equals("")) {
+									pricestr = "<html>" + price[j] * cnt + "</html>"; 
+								} else {
+									tempPrice = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
+									pricestr = "<html>" + tempPrice + "<br>" + price[j] * cnt + "</html>"; 
+								}
+								dialog1.price.setText(pricestr);
+								
+								dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
+								
 								}
 						});
-						
-					String tempMenu = dialog1.menu.getText();
-					String menustr = "";
-					if(tempMenu.equals("")) {
-						menustr = "<html>" + menu[j] + "</html>"; 
-					} else {
-						tempMenu = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7); // 6번째 부터 끝에서 -7번째 자리까지 자름
-						menustr = "<html>" + tempMenu + "<br>" + menu[j] + "</html>"; 
-					}
-					dialog1.menu.setText(menustr);
-					
-					String tempNum = dialog1.num.getText();
-					String numstr = "";
-					if(tempNum.equals("")) {
-						numstr = "<html>" + cnt + "</html>"; 
-					} else {
-						tempNum = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
-						numstr = "<html>" + tempNum + "<br>" + cnt + "</html>"; 
-					}
-					dialog1.num.setText(numstr);
-					
-					String tempPrice = dialog1.price.getText();
-					String pricestr = "";
-					if(tempPrice.equals("")) {
-						pricestr = "<html>" + price[j] + "</html>"; 
-					} else {
-						tempPrice = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
-						pricestr = "<html>" + tempPrice + "<br>" + price[j] + "</html>"; 
-					}
-					dialog1.price.setText(pricestr);
-					
-					dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
 					
 					String tempMenu2 = dialog2.menu.getText();
 					String menustr2 = "";
@@ -430,17 +471,22 @@ public class Chicken extends JFrame {
 					String tempPrice2 = dialog2.price.getText();
 					String pricestr2 = "";
 					if(tempPrice2.equals("")) {
-						pricestr2 = "<html>" + price[j] + "</html>"; 
+						pricestr2 = "<html>" + price[j] * cnt + "</html>"; 
 					} else {
 						tempPrice2 = dialog2.price.getText().substring(6, dialog2.price.getText().length()-7);
-						pricestr2 = "<html>" + tempPrice2 + "<br>" + price[j] + "</html>"; 
+						pricestr2 = "<html>" + tempPrice2 + "<br>" + price[j] * cnt + "</html>"; 
 					}
 					dialog2.price.setText(pricestr2);
-					
 					dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
+					
 						
-					} else {
+					} else if(Integer.parseInt(num[j].getText()) == 0){
 						JOptionPane.showMessageDialog(null, "1개 이상을 선택하세요.", "알림", JOptionPane.ERROR_MESSAGE);
+					} else if (prstock <= 0) {
+						prstock = prstock + cnt;
+						stock[j] = prstock;
+						bt[j].setEnabled(false);
+						JOptionPane.showMessageDialog(null, "재고가 부족합니다.", "알림", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -453,12 +499,9 @@ public class Chicken extends JFrame {
 			plusbt[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					bt[j].setEnabled(true);
 					int cnt = Integer.parseInt(num[j].getText());
 					cnt++;
-					if (cnt > stock[j]) {
-						cnt = stock[j];
-						JOptionPane.showMessageDialog(null, "재고가 부족합니다.", "알림", JOptionPane.ERROR_MESSAGE);
-					}
 					num[j].setText(Integer.toString(cnt));
 				}
 			});
@@ -470,12 +513,13 @@ public class Chicken extends JFrame {
 			minusbt[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					bt[j].setEnabled(true);
 					int cnt = Integer.parseInt(num[j].getText());
 					cnt--;
 					if (cnt < 0) {
 						cnt = 0;
 						JOptionPane.showMessageDialog(null, "1개 이상을 선택해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
-					}
+					} 
 					num[j].setText(Integer.toString(cnt));
 				}
 			});

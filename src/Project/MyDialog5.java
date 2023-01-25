@@ -96,24 +96,16 @@ public class MyDialog5 extends JDialog { // 관리자 비밀번호 찾기 화면
 			public void actionPerformed(ActionEvent e) {
 				if(idtf.getText().equals("admin") && phonetf.getText().equals("01012345678")) {
 					JOptionPane.showMessageDialog(null, "비밀번호는 1234 입니다.", "비밀번호", JOptionPane.INFORMATION_MESSAGE);
-					idtf.setText("");
-					phonetf.setText("");
 					setVisible(false);
 				} else if(!(idtf.getText().equals("admin")) && phonetf.getText().equals("01012345678")) {
-					idtf.setText("");
-					phonetf.setText("");
 					iderrorjb.setVisible(false);
 					phoneerrorjb.setVisible(false);
 					iderrorjb.setVisible(true);
 				} else if(idtf.getText().equals("admin") && !(phonetf.getText().equals("01012345678"))) {
-					idtf.setText("");
-					phonetf.setText("");
 					iderrorjb.setVisible(false);
 					phoneerrorjb.setVisible(false);
 					phoneerrorjb.setVisible(true);
 				} else if(!(idtf.getText().equals("admin")) && !(phonetf.getText().equals("01012345678"))) {
-					idtf.setText("");
-					phonetf.setText("");
 					iderrorjb.setVisible(false);
 					phoneerrorjb.setVisible(false);
 					iderrorjb.setVisible(true);
