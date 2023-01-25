@@ -180,9 +180,17 @@ public class Chicken extends JFrame {
 				imgPanel3.add(bt[i]);
 			}
 
-			icon[i] = new ImageIcon("image/" + i + ".png"); // 버튼 이미지 icon 배열에 담기
-
-			bt[i].setIcon(icon[i]); // 버튼배열에 이미지 추가
+			ResultSet srs;
+			try {
+				srs = stmt.executeQuery("select * from menu where num = " + i + "");
+				String address = srs.getString("address");
+					icon[i] = new ImageIcon(address); 
+					bt[i].setIcon(icon[i]); 
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 
 			l[i] = new JLabel("<html><body style='text-align:center;'>" + menu[i] // 라벨 배열 text 설정
 					+ "<br>" + price[i] + "원" + "</html>", JLabel.CENTER);
@@ -353,35 +361,16 @@ public class Chicken extends JFrame {
 						dialog2.setVisible(true);
 						int cnt = Integer.parseInt(num[j].getText());
 						sum += (price[j] * cnt);
-						stock[j] = stock[j] - cnt;
-						prstock = stock[j]; 
-						stocklb[j].setText("재고 : " + prstock + "개");
 						
-					dialog2.closebt.addActionListener(new ActionListener() {
+						dialog2.orderbt.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								stock[j] = stock[j] - cnt;
+								prstock = stock[j]; 
+								stocklb[j].setText("재고 : " + prstock + "개");
+								}
+						});
 						
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							stock[j] = stock[j] + cnt;
-							prstock = stock[j]; 
-							stocklb[j].setText("재고 : " + prstock + "개");
-						}
-					});	
-						
-					dialog2.resetbt.addActionListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(dialog2.menu.getText().equals("") && dialog2.num.getText().equals("") && dialog2.price.getText().equals("")) {
-								JOptionPane.showMessageDialog(null, "초기화 할 것이 없습니다.", "알림", JOptionPane.ERROR_MESSAGE);
-							} else {
-							stock[j] = stock[j] + cnt;
-							prstock = stock[j]; 
-							stocklb[j].setText("재고 : " + prstock + "개");
-							}
-							}
-					});
-					
-					
-					
 					String tempMenu = dialog1.menu.getText();
 					String menustr = "";
 					if(tempMenu.equals("")) {

@@ -131,6 +131,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
+					menu.setText("");
 					num.setText("");
 					price.setText("");
 					sumlb.setText("합계 : ");
@@ -154,6 +155,9 @@ public class MyDialog2 extends JDialog { // 장바구니
 		resetbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(menu.getText().equals("") && num.getText().equals("") && price.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "초기화 할 것이 없습니다.", "알림", JOptionPane.ERROR_MESSAGE);
+				} 
 				menu.setText("");
 				num.setText("");
 				price.setText("");
