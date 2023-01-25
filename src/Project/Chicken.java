@@ -183,9 +183,13 @@ public class Chicken extends JFrame {
 			ResultSet srs;
 			try {
 				srs = stmt.executeQuery("select * from menu where num = " + i + "");
-				String address = srs.getString("address");
-					icon[i] = new ImageIcon(address); 
-					bt[i].setIcon(icon[i]); 
+				if(srs.next()) {
+					String address = srs.getString("address");
+					System.out.println(address);
+						icon[i] = new ImageIcon(address); 
+						bt[i].setIcon(icon[i]); 
+				}
+				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
