@@ -18,11 +18,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class MyDialog2 extends JDialog { // 장바구니
+	
+	private MyDialog1 dialog1;
+	private MyDialog8 dialog8; // 카드 투입 화면
+	private MyDialog8 dialog9; // 카드 결제 중
+	
 	JLabel jb = new JLabel("장바구니");
 	JLabel tableNum = new JLabel("1번 테이블");
 	JLabel sumlb = new JLabel("합계 : ");
 	JButton closebt = new JButton("닫기");
-	JButton orderbt = new JButton("주문하기");
+	JButton orderbt = new JButton("결제하기");
 	JButton okbt = new JButton("확인");
 	JButton resetbt = new JButton("초기화");
 	
@@ -123,7 +128,9 @@ public class MyDialog2 extends JDialog { // 장바구니
 		add(panel);
 		
 		setSize(500, 850);
-
+		dialog1 = new MyDialog1(chicken, "주문내역");
+		dialog8 = new MyDialog8(chicken, "카드투입");
+		dialog9 = new MyDialog8(chicken, "카드 결제 중");
 		orderbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,8 +142,9 @@ public class MyDialog2 extends JDialog { // 장바구니
 					num.setText("");
 					price.setText("");
 					sumlb.setText("합계 : ");
-					
-					JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.", "주문완료", JOptionPane.INFORMATION_MESSAGE);
+//					dialog8.setVisible(true);	
+					dialog9.setVisible(true);
+					//JOptionPane.showMessageDialog(null, "주문이 완료되었습니다.", "주문완료", JOptionPane.INFORMATION_MESSAGE);
 				}
 				}
 		});
@@ -148,6 +156,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 				num.setText("");
 				price.setText("");
 				sumlb.setText("합계 : ");
+								
 				setVisible(false); // 비활성화
 			}
 		});
@@ -162,6 +171,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 				num.setText("");
 				price.setText("");
 				sumlb.setText("합계 : ");
+							
 			}
 		});
 	}

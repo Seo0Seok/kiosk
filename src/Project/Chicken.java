@@ -20,6 +20,8 @@ public class Chicken extends JFrame {
 	private MyDialog2 dialog2; // 장바구니
 	private MyDialog3 dialog3; // 관리자 로그인 화면
 	int sum = 0; // 가격 총 합
+	int sum2 = 0;
+	int sum3 = 0;
 	int cnt = 0; // 
 	JLabel l[];
 	JLabel stocklb[];
@@ -59,6 +61,7 @@ public class Chicken extends JFrame {
 
 		// 메인화면 구성
 		JLabel tableNum = new JLabel("1번 테이블");
+		JLabel label = new JLabel("주문 방법 : 수량 선택 후 이미지를 클릭하세요.");
 		JButton mainbt = new JButton("메인메뉴");
 		JButton sidebt = new JButton("사이드메뉴");
 		JButton drinkbt = new JButton("음료");
@@ -77,19 +80,20 @@ public class Chicken extends JFrame {
 		Font font3 = new Font("굴림", Font.BOLD, 30);
 
 		// 패널 설정
-		mainPanel.setBackground(new Color(230, 230, 230));
+		//mainPanel.setBackground(new Color(230, 230, 230));
+		mainPanel.setBackground(Color.BLACK);
 		mainPanel.setLayout(null);
 
 		imgPanel.setBounds(250, 100, 870, 660);
-		imgPanel.setBackground(new Color(230, 230, 230));
+		imgPanel.setBackground(Color.BLACK);
 		imgPanel.setLayout(null);
 
 		imgPanel2.setBounds(250, 100, 870, 660);
-		imgPanel2.setBackground(new Color(230, 230, 230));
+		imgPanel2.setBackground(Color.BLACK);
 		imgPanel2.setLayout(null);
 
 		imgPanel3.setBounds(250, 100, 870, 660);
-		imgPanel3.setBackground(new Color(230, 230, 230));
+		imgPanel3.setBackground(Color.BLACK);
 		imgPanel3.setLayout(null);
 
 		// 메인화면 컴포넌트 세팅
@@ -99,6 +103,12 @@ public class Chicken extends JFrame {
 		tableNum.setBackground(Color.RED);
 		tableNum.setFont(font2);
 		tableNum.setHorizontalAlignment(JLabel.CENTER);
+		
+		label.setBounds(50, 25, 500, 50); // 알림 문구
+		label.setOpaque(true);
+		label.setFont(font);
+		label.setBackground(new Color(255, 255, 255));
+		label.setHorizontalAlignment(JLabel.CENTER);
 
 		mainbt.setBounds(50, 100, 150, 150); // 메인 메뉴 버튼 설정
 		mainbt.setOpaque(true);
@@ -109,7 +119,7 @@ public class Chicken extends JFrame {
 		sidebt.setBounds(50, 300, 150, 150); // 사이드 메뉴 버튼 설정
 		sidebt.setOpaque(true);
 		sidebt.setForeground(Color.WHITE);
-		sidebt.setBackground(Color.GRAY);
+		sidebt.setBackground(new Color(150, 150, 150));
 		sidebt.setFont(font2);
 
 		drinkbt.setBounds(50, 500, 150, 150); // 음료 메뉴 버튼 설정
@@ -124,13 +134,13 @@ public class Chicken extends JFrame {
 		adminbt.setBackground(Color.blue);
 		adminbt.setFont(font2);
 
-		jbt1.setBounds(775, 775, 150, 50); // 주문내역 버튼 설정
+		jbt1.setBounds(775, 785, 150, 50); // 주문내역 버튼 설정
 		jbt1.setOpaque(true);
 		jbt1.setForeground(Color.BLACK);
 		jbt1.setBackground(Color.WHITE);
 		jbt1.setFont(font2);
 
-		jbt2.setBounds(975, 775, 150, 50); // 장바구니 버튼 설정
+		jbt2.setBounds(975, 785, 150, 50); // 장바구니 버튼 설정
 		jbt2.setOpaque(true);
 		jbt2.setForeground(Color.BLACK);
 		jbt2.setBackground(Color.WHITE);
@@ -185,12 +195,12 @@ public class Chicken extends JFrame {
 					+ "<br>" + price[i] + "원" + "</html>", JLabel.CENTER);
 			stocklb[i] = new JLabel("재고 : " + stock[i] + "개");
 			stocklb[i].setFont(font3);
-			stocklb[i].setForeground(Color.MAGENTA);
+			stocklb[i].setForeground(Color.white);
 			num[i].setFont(font3);
 
 			if (i < 3) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 190, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 190, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -201,7 +211,7 @@ public class Chicken extends JFrame {
 				imgPanel.add(num[i]);
 			} else if (i < 6) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -212,7 +222,7 @@ public class Chicken extends JFrame {
 				imgPanel.add(num[i]);
 			} else if (i < 9) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -223,7 +233,7 @@ public class Chicken extends JFrame {
 				imgPanel2.add(num[i]);
 			} else if (i < 12) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -234,7 +244,7 @@ public class Chicken extends JFrame {
 				imgPanel2.add(num[i]);
 			} else if (i < 15) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -245,7 +255,7 @@ public class Chicken extends JFrame {
 				imgPanel3.add(num[i]);
 			} else if (i < 18) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
-				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 50, 170, 100);
+				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
 				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
@@ -258,17 +268,17 @@ public class Chicken extends JFrame {
 
 			// 라벨, +/- 버튼 설정
 			l[i].setOpaque(true);
-			l[i].setBackground(Color.BLACK);
-			l[i].setForeground(Color.WHITE);
+			l[i].setBackground(Color.WHITE);
+			l[i].setForeground(Color.BLACK);
 			l[i].setFont(font);
 
 			plusbt[i].setOpaque(true);
-			plusbt[i].setBackground(Color.WHITE);
+			plusbt[i].setBackground(Color.LIGHT_GRAY);
 			plusbt[i].setForeground(Color.BLACK);
 			plusbt[i].setFont(font);
 
 			minusbt[i].setOpaque(true);
-			minusbt[i].setBackground(Color.WHITE);
+			minusbt[i].setBackground(Color.LIGHT_GRAY);
 			minusbt[i].setForeground(Color.BLACK);
 			minusbt[i].setFont(font);
 		}
@@ -349,12 +359,77 @@ public class Chicken extends JFrame {
 					cnt = Integer.parseInt(num[j].getText());
 					stock[j] = stock[j] - cnt;
 					prstock = stock[j];
+					sum2 = 0;
 					
 					if (Integer.parseInt(num[j].getText()) > 0 && prstock >= 0) {
 						dialog2.setVisible(true);
 						
 						sum += (price[j] * cnt);
+						sum2 += (price[j] * cnt);
+						sum3 += sum2;
 						stocklb[j].setText("재고 : " + prstock + "개");
+						
+						String tempMenu2 = dialog2.menu.getText();
+						String menustr2 = "";
+						if(tempMenu2.equals("")) {
+							menustr2 = "<html>" + menu[j] + "</html>"; 
+						} else {
+							tempMenu2 = dialog2.menu.getText().substring(6, dialog2.menu.getText().length()-7);
+							menustr2 = "<html>" + tempMenu2 + "<br>" + menu[j] + "</html>"; 
+						}
+						dialog2.menu.setText(menustr2);
+						
+						String tempNum2 = dialog2.num.getText();
+						String numstr2 = "";
+						if(tempNum2.equals("")) {
+							numstr2 = "<html>" + cnt + "</html>"; 
+						} else {
+							tempNum2 = dialog2.num.getText().substring(6, dialog2.num.getText().length()-7);
+							numstr2 = "<html>" + tempNum2 + "<br>" + cnt + "</html>"; 
+						}
+						dialog2.num.setText(numstr2);
+						
+						String tempPrice2 = dialog2.price.getText();
+						String pricestr2 = "";
+						if(tempPrice2.equals("")) {
+							pricestr2 = "<html>" + price[j] * cnt + "</html>"; 
+						} else {
+							tempPrice2 = dialog2.price.getText().substring(6, dialog2.price.getText().length()-7);
+							pricestr2 = "<html>" + tempPrice2 + "<br>" + price[j] * cnt + "</html>"; 
+						}
+						dialog2.price.setText(pricestr2);
+						dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
+						
+						String tempMenu1 = dialog1.menu.getText();
+						String menustr1 = "";
+						if(tempMenu1.equals("")) {
+							menustr1 = "<html>" + menu[j] + "</html>"; 
+						} else {
+							tempMenu1 = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7);
+							menustr1 = "<html>" + tempMenu1 + "<br>" + menu[j] + "</html>"; 
+						}
+						dialog1.menu.setText(menustr1);
+						
+						String tempNum1 = dialog1.num.getText();
+						String numstr1 = "";
+						if(tempNum1.equals("")) {
+							numstr1 = "<html>" + cnt + "</html>"; 
+						} else {
+							tempNum1 = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
+							numstr1 = "<html>" + tempNum1 + "<br>" + cnt + "</html>"; 
+						}
+						dialog1.num.setText(numstr1);
+						
+						String tempPrice1 = dialog1.price.getText();
+						String pricestr1 = "";
+						if(tempPrice1.equals("")) {
+							pricestr1 = "<html>" + price[j] * cnt + "</html>"; 
+						} else {
+							tempPrice1 = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
+							pricestr1 = "<html>" + tempPrice1 + "<br>" + price[j] * cnt + "</html>"; 
+						}
+						dialog1.price.setText(pricestr1);
+						dialog1.sumlb.setText("합계 : " + sum3  + "원" + "\n");
 						
 						dialog2.closebt.addActionListener(new ActionListener() {
 							@Override
@@ -371,7 +446,13 @@ public class Chicken extends JFrame {
 									e1.printStackTrace();
 								}
 								stocklb[j].setText("재고 : " + stock[j] + "개");
+								num[j].setText("0");
+								cnt = 0;
 								sum = 0;
+								dialog1.menu.setText("");
+								dialog1.num.setText("");
+								dialog1.price.setText("");
+								dialog1.sumlb.setText("합계  :    원");
 								bt[j].setEnabled(true);
 								}
 						});
@@ -391,7 +472,12 @@ public class Chicken extends JFrame {
 									e1.printStackTrace();
 								}
 								stocklb[j].setText("재고 : " + stock[j] + "개");
+								cnt = 0;
 								sum = 0;
+								dialog1.menu.setText("");
+								dialog1.num.setText("");
+								dialog1.price.setText("");
+								dialog1.sumlb.setText("합계  :    ");
 								bt[j].setEnabled(true);
 								}
 						});
@@ -410,76 +496,13 @@ public class Chicken extends JFrame {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
-								stocklb[j].setText("재고 : " + prstock + "개");
+								num[j].setText("0");
+								cnt = 0;
+								sum = 0;
 								bt[j].setEnabled(true);
-								
-								String tempMenu = dialog1.menu.getText();
-								String menustr = "";
-								if(tempMenu.equals("")) {
-									menustr = "<html>" + menu[j] + "</html>"; 
-								} else {
-									tempMenu = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7); // 6번째 부터 끝에서 -7번째 자리까지 자름
-									menustr = "<html>" + tempMenu + "<br>" + menu[j] + "</html>"; 
-								}
-								dialog1.menu.setText(menustr);
-								
-								String tempNum = dialog1.num.getText();
-								String numstr = "";
-								if(tempNum.equals("")) {
-									numstr = "<html>" + cnt + "</html>"; 
-								} else {
-									tempNum = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
-									numstr = "<html>" + tempNum + "<br>" + cnt + "</html>"; 
-								}
-								dialog1.num.setText(numstr);
-								
-								String tempPrice = dialog1.price.getText();
-								String pricestr = "";
-								if(tempPrice.equals("")) {
-									pricestr = "<html>" + price[j] * cnt + "</html>"; 
-								} else {
-									tempPrice = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
-									pricestr = "<html>" + tempPrice + "<br>" + price[j] * cnt + "</html>"; 
-								}
-								dialog1.price.setText(pricestr);
-								
-								dialog1.sumlb.setText("합계 : " + sum  + "원" + "\n");
-								
 								}
 						});
 					
-					String tempMenu2 = dialog2.menu.getText();
-					String menustr2 = "";
-					if(tempMenu2.equals("")) {
-						menustr2 = "<html>" + menu[j] + "</html>"; 
-					} else {
-						tempMenu2 = dialog2.menu.getText().substring(6, dialog2.menu.getText().length()-7);
-						menustr2 = "<html>" + tempMenu2 + "<br>" + menu[j] + "</html>"; 
-					}
-					dialog2.menu.setText(menustr2);
-					
-					String tempNum2 = dialog2.num.getText();
-					String numstr2 = "";
-					if(tempNum2.equals("")) {
-						numstr2 = "<html>" + cnt + "</html>"; 
-					} else {
-						tempNum2 = dialog2.num.getText().substring(6, dialog2.num.getText().length()-7);
-						numstr2 = "<html>" + tempNum2 + "<br>" + cnt + "</html>"; 
-					}
-					dialog2.num.setText(numstr2);
-					
-					String tempPrice2 = dialog2.price.getText();
-					String pricestr2 = "";
-					if(tempPrice2.equals("")) {
-						pricestr2 = "<html>" + price[j] * cnt + "</html>"; 
-					} else {
-						tempPrice2 = dialog2.price.getText().substring(6, dialog2.price.getText().length()-7);
-						pricestr2 = "<html>" + tempPrice2 + "<br>" + price[j] * cnt + "</html>"; 
-					}
-					dialog2.price.setText(pricestr2);
-					dialog2.sumlb.setText("합계 : " + sum  + "원" + "\n");
-					
-						
 					} else if(Integer.parseInt(num[j].getText()) == 0){
 						JOptionPane.showMessageDialog(null, "1개 이상을 선택하세요.", "알림", JOptionPane.ERROR_MESSAGE);
 					} else if (prstock <= 0) {
@@ -499,10 +522,16 @@ public class Chicken extends JFrame {
 			plusbt[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					bt[j].setEnabled(true);
 					int cnt = Integer.parseInt(num[j].getText());
-					cnt++;
-					num[j].setText(Integer.toString(cnt));
+					if(cnt >= stock[j]) {
+						bt[j].setEnabled(false);
+						JOptionPane.showMessageDialog(null, "재고가 부족합니다.", "알림", JOptionPane.ERROR_MESSAGE);
+					} else {
+						bt[j].setEnabled(true);
+						cnt = Integer.parseInt(num[j].getText());
+						cnt++;
+						num[j].setText(Integer.toString(cnt));
+					}
 				}
 			});
 
@@ -527,6 +556,7 @@ public class Chicken extends JFrame {
 
 		// 컴포넌트, 패널 추가
 		mainPanel.add(tableNum);
+		mainPanel.add(label);
 		mainPanel.add(mainbt);
 		mainPanel.add(sidebt);
 		mainPanel.add(drinkbt);

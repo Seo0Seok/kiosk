@@ -25,7 +25,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 	JLabel jb2 = new JLabel("수량");
 	JLabel jb3 = new JLabel("가격");
 	JLabel tableNum = new JLabel("1번 테이블");
-	JLabel sumlb = new JLabel("합계 :   ");
+	JLabel sumlb = new JLabel("합계 :            ");
 	JButton closebt = new JButton("닫기");
 	
 	JLabel menu = new JLabel("", JLabel.LEFT);

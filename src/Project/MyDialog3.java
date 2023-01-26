@@ -21,6 +21,7 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 	JButton closebt = new JButton("닫기");
 	JLabel jb = new JLabel("비밀번호를 입력하세요.");
 	JLabel errorjb = new JLabel("비밀번호를 잘못 입력했습니다. 다시 확인해 주세요.(비밀번호 : 1234)");
+	JLabel errorjb2 = new JLabel("비밀번호를 입력하세요.(비밀번호 : 1234)");
 	JTextField tf = new JTextField(20);
 	JPanel panel = new JPanel();
 	
@@ -45,10 +46,16 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 		errorjb.setHorizontalAlignment(JLabel.CENTER);
 		errorjb.setVisible(false);
 		
+		errorjb2.setBounds(0, 180, 500, 50);
+		errorjb2.setForeground(Color.RED);
+		errorjb2.setFont(new Font("굴림", Font.BOLD, 14));
+		errorjb2.setHorizontalAlignment(JLabel.CENTER);
+		errorjb2.setVisible(false);
+		
 		pwbt.setBounds(30, 300, 180, 50);
 		pwbt.setOpaque(true);
-		pwbt.setForeground(Color.WHITE);
-		pwbt.setBackground(Color.BLACK);
+		pwbt.setForeground(Color.BLACK);
+		pwbt.setBackground(Color.WHITE);
 		pwbt.setFont(new Font("굴림", Font.BOLD, 20));
 		
 		loginbt.setBounds(250, 300, 100, 50);
@@ -59,8 +66,8 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 		
 		closebt.setBounds(360, 300, 100, 50);
 		closebt.setOpaque(true);
-		closebt.setForeground(Color.WHITE);
-		closebt.setBackground(Color.BLACK);
+		closebt.setForeground(Color.BLACK);
+		closebt.setBackground(Color.WHITE);
 		closebt.setFont(new Font("굴림", Font.BOLD, 20));
 		
 		add(pwbt);
@@ -69,6 +76,7 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 		add(tf);
 		add(jb);
 		add(errorjb);
+		add(errorjb2);
 		add(panel);
 		
 
@@ -86,11 +94,16 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-				if(Integer.parseInt(tf.getText()) == 1234) {
+				if(tf.getText().equals("1234")) {
 					tf.setText("");
 					dialog4.setVisible(true);
+				}  else if(tf.getText().equals("")) {
+					tf.setText("");
+					errorjb.setVisible(false);
+					errorjb2.setVisible(true);
 				} else {
 					tf.setText("");
+					errorjb2.setVisible(false);
 					errorjb.setVisible(true);
 				}
 				} catch(NumberFormatException e1) {
@@ -111,16 +124,21 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				try {
-				if(Integer.parseInt(tf.getText()) == 1234) {
-					tf.setText("");
-					dialog4.setVisible(true);
-				} else {
-					tf.setText("");
-					errorjb.setVisible(true);
-				}
-				} catch(NumberFormatException e1) {
-					return;
-				}
+					if(tf.getText().equals("1234")) {
+						tf.setText("");
+						dialog4.setVisible(true);
+					}  else if(tf.getText().equals("")) {
+						tf.setText("");
+						errorjb.setVisible(false);
+						errorjb2.setVisible(true);
+					} else {
+						tf.setText("");
+						errorjb2.setVisible(false);
+						errorjb.setVisible(true);
+					}
+					} catch(NumberFormatException e1) {
+						return;
+					}
 				}
 				
 			}
