@@ -87,6 +87,9 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 			}
 		});
 		
+		JLabel label1 = new JLabel("재고가 일괄 10개로 수정되었습니다.");
+		label1.setFont(new Font("굴림", Font.BOLD, 20));
+		
 		adminbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -102,8 +105,7 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 							}
 						chicken.stocklb[i].setText("재고 : 10개");
 						}
-						JOptionPane.showMessageDialog(null, "재고가 일괄 10개로 수정되었습니다.", "재고수정", JOptionPane.INFORMATION_MESSAGE);
-						System.out.println("재고가 일괄 10개로 수정되었습니다.");
+						JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
 					} 
 				} catch (SQLException e1) {
 					System.out.println("SQL 실행오류");

@@ -129,11 +129,18 @@ public class MyDialog2 extends JDialog { // 장바구니
 		setSize(500, 850);
 		dialog1 = new MyDialog1(chicken, "주문내역");
 		dialog8 = new MyDialog8(chicken, "카드투입");
+		
+		JLabel label1 = new JLabel("메뉴를 선택해주세요.");
+		label1.setFont(new Font("굴림", Font.BOLD, 20));
+		
+		JLabel label2 = new JLabel("초기화 할 것이 없습니다.");
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
+		
 		orderbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(menu.getText().equals("") && num.getText().equals("") && price.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "메뉴를 선택해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
 					menu.setText("");
@@ -161,7 +168,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(menu.getText().equals("") && num.getText().equals("") && price.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "초기화 할 것이 없습니다.", "알림", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, label2, "알림", JOptionPane.ERROR_MESSAGE);
 				} 
 				menu.setText("");
 				num.setText("");

@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 
 public class MyDialog9 extends JDialog { // 카드 결제 화면
 	private MyPanel panel = new MyPanel(null);
-	
 	public MyDialog9(Chicken chicken, String title) {
 		super(chicken, title, true);
 		setResizable(false);
@@ -31,9 +30,9 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 		
 		label.setFont(new Font("Gothic", Font.ITALIC, 65));
 		
+		
 		add(label);
 		add(panel);
-		
 		th.start();
 	}
 	
@@ -50,14 +49,15 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 		@Override
 		public void run() {
 			int n = 3;
+			JLabel label2 = new JLabel("결제가 완료되었습니다!!");
+			label2.setFont(new Font("굴림", Font.BOLD, 20));
 			while(true) {
 				label.setText(Integer.toString(n));
 				n--;
 				label.setBounds(215, 200, 60, 60);
-				
 				if(n == -1) {
-					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다!!", "결제 완료", JOptionPane.INFORMATION_MESSAGE);
-					this.setVisible(false);
+					JOptionPane.showMessageDialog(null, label2, "결제 완료", JOptionPane.INFORMATION_MESSAGE);
+					MyDialog9.this.setVisible(false);
 					break;
 				}
 				try {

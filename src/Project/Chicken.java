@@ -49,7 +49,7 @@ public class Chicken extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = getContentPane();
 		setResizable(false);
-
+		
 		// 메뉴, 가격, 버튼, 라벨, 이미지 배열
 		JButton bt[] = new JButton[menu.length];
 		l = new JLabel[menu.length];
@@ -65,7 +65,7 @@ public class Chicken extends JFrame {
 		JButton mainbt = new JButton("메인메뉴");
 		JButton sidebt = new JButton("사이드메뉴");
 		JButton drinkbt = new JButton("음료");
-		JButton adminbt = new JButton("관리자 모드");
+		JButton adminbt = new JButton("관리자모드");
 		JButton jbt1 = new JButton("주문내역");
 		JButton jbt2 = new JButton("장바구니");
 
@@ -76,7 +76,7 @@ public class Chicken extends JFrame {
 
 		// 폰트
 		Font font = new Font("굴림", Font.BOLD, 22);
-		Font font2 = new Font("굴림", Font.BOLD, 20);
+		Font font2 = new Font("굴림", Font.BOLD, 22);
 		Font font3 = new Font("굴림", Font.BOLD, 30);
 
 		// 패널 설정
@@ -119,7 +119,7 @@ public class Chicken extends JFrame {
 		sidebt.setBounds(50, 300, 150, 150); // 사이드 메뉴 버튼 설정
 		sidebt.setOpaque(true);
 		sidebt.setForeground(Color.WHITE);
-		sidebt.setBackground(new Color(150, 150, 150));
+		sidebt.setBackground(Color.GRAY);
 		sidebt.setFont(font2);
 
 		drinkbt.setBounds(50, 500, 150, 150); // 음료 메뉴 버튼 설정
@@ -349,7 +349,15 @@ public class Chicken extends JFrame {
 				imgPanel3.setVisible(true);
 			}
 		});
-
+		
+		JLabel label1 = new JLabel("1개 이상을 선택하세요.");
+		label1.setFont(new Font("굴림", Font.BOLD, 20));
+		
+		JLabel label2 = new JLabel("재고가 부족합니다.");
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
+		
+		
+		
 		for (int i = 0; i < menu.length; i++) {
 			int j = i;
 			bt[i].addActionListener(new ActionListener() {
@@ -504,12 +512,12 @@ public class Chicken extends JFrame {
 						});
 					
 					} else if(Integer.parseInt(num[j].getText()) == 0){
-						JOptionPane.showMessageDialog(null, "1개 이상을 선택하세요.", "알림", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 					} else if (prstock <= 0) {
 						prstock = prstock + cnt;
 						stock[j] = prstock;
 						bt[j].setEnabled(false);
-						JOptionPane.showMessageDialog(null, "재고가 부족합니다.", "알림", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, label2, "알림", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -525,7 +533,7 @@ public class Chicken extends JFrame {
 					int cnt = Integer.parseInt(num[j].getText());
 					if(cnt >= stock[j]) {
 						bt[j].setEnabled(false);
-						JOptionPane.showMessageDialog(null, "재고가 부족합니다.", "알림", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, label2, "알림", JOptionPane.ERROR_MESSAGE);
 					} else {
 						bt[j].setEnabled(true);
 						cnt = Integer.parseInt(num[j].getText());
@@ -547,7 +555,7 @@ public class Chicken extends JFrame {
 					cnt--;
 					if (cnt < 0) {
 						cnt = 0;
-						JOptionPane.showMessageDialog(null, "1개 이상을 선택해주세요.", "알림", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 					} 
 					num[j].setText(Integer.toString(cnt));
 				}
@@ -575,7 +583,8 @@ public class Chicken extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new Chicken();
+		//new Start();
+		Chicken chicken = new Chicken();
 
 	}
 }

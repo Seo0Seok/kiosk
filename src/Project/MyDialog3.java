@@ -88,7 +88,6 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 				setVisible(false); // 비활성화
 			}
 		});
-		
 		dialog4 = new MyDialog4(chicken, "관리자 화면");
 		loginbt.addActionListener(new ActionListener() {
 			@Override

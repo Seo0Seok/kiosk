@@ -91,6 +91,8 @@ public class MyDialog7 extends JDialog { // 가격수정 화면
 			}
 		});
 		
+		JLabel label2 = new JLabel("메뉴명, 가격을 정확히 입력하세요.");
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
 		
 		okbt.addActionListener(new ActionListener() {
 			@Override
@@ -101,23 +103,26 @@ public class MyDialog7 extends JDialog { // 가격수정 화면
 					int num = Integer.parseInt(tf2.getText()); 
 					String query = "update menu set price = " + num + " where name = '" + menuname + "'";
 					int n = chicken.stmt.executeUpdate(query);
+					
+					JLabel label1 = new JLabel(menuname + " " + num + "원으로 수정되었습니다.");
+					label1.setFont(new Font("굴림", Font.BOLD, 20));
+					
 					if(n >= 1) {
-						JOptionPane.showMessageDialog(null, menuname + " " + num + "원으로 수정되었습니다.", "가격수정", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, label1, "가격수정", JOptionPane.INFORMATION_MESSAGE);
 						tf1.setText("");
 						tf2.setText("");
 						// 추가 3
 						chicken.l[jComboBox.getSelectedIndex()].setText("<html><body style='text-align:center;'>" + menuname // 라벨 배열 text 설정
 								+ "<br>" + num + "원" + "</html>");
-						System.out.println(menuname + " " + num + "원으로 수정되었습니다.");
 					} else {
-						JOptionPane.showMessageDialog(null,"메뉴명, 가격을 정확히 입력하세요.", "가격수정", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,label2, "가격수정", JOptionPane.ERROR_MESSAGE);
 						tf1.setText("");
 						tf2.setText("");
 					}
 				} catch (SQLException e1) {
 					System.out.println("SQL 실행오류");
 				} catch(NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,"메뉴명, 가격을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -130,20 +135,23 @@ public class MyDialog7 extends JDialog { // 가격수정 화면
 						int num = Integer.parseInt(tf2.getText()); // 재고수량
 						String query = "update menu set price = " + num + " where name = '" + menuname + "'";
 						int n = chicken.stmt.executeUpdate(query);
+						
+						JLabel label1 = new JLabel(menuname + " " + num + "원으로 수정되었습니다.");
+						label1.setFont(new Font("굴림", Font.BOLD, 20));
+						
 						if(n >= 1) {
-							JOptionPane.showMessageDialog(null, menuname + " " + num + "원으로 수정되었습니다.", "가격수정", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, label1, "가격수정", JOptionPane.INFORMATION_MESSAGE);
 							tf1.setText("");
 							tf2.setText("");
-							System.out.println(menuname + " " + num + "원으로 수정되었습니다.");
 						} else {
-							JOptionPane.showMessageDialog(null,"메뉴명, 가격을 정확히 입력하세요.", "가격수정", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,label2, "가격수정", JOptionPane.ERROR_MESSAGE);
 							tf1.setText("");
 							tf2.setText("");
 						}
 					} catch (SQLException e1) {
 						System.out.println("SQL 실행오류");
 					} catch(NumberFormatException e1) {
-						JOptionPane.showMessageDialog(null,"메뉴명, 가격을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -157,13 +165,16 @@ public class MyDialog7 extends JDialog { // 가격수정 화면
 						int num = Integer.parseInt(tf2.getText()); // 재고수량
 						String query = "update menu set price = " + num + " where name = '" + menuname + "'";
 						int n = chicken.stmt.executeUpdate(query);
+						
+						JLabel label1 = new JLabel(menuname + " " + num + "원으로 수정되었습니다.");
+						label1.setFont(new Font("굴림", Font.BOLD, 20));
+						
 						if(n >= 1) {
-							JOptionPane.showMessageDialog(null, menuname + " " + num + "원으로 수정되었습니다.", "가격수정", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, label1, "가격수정", JOptionPane.INFORMATION_MESSAGE);
 							tf1.setText("");
 							tf2.setText("");
-							System.out.println(menuname + " " + num + "원으로 수정되었습니다.");
 						} else {
-							JOptionPane.showMessageDialog(null,"메뉴명, 가격을 정확히 입력하세요.", "가격수정", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,label2, "가격수정", JOptionPane.ERROR_MESSAGE);
 							tf1.setText("");
 							tf2.setText("");
 						}

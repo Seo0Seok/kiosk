@@ -91,11 +91,14 @@ public class MyDialog5 extends JDialog { // 관리자 비밀번호 찾기 화면
 			}
 		});
 		
+		JLabel label1 = new JLabel("비밀번호는 1234 입니다.");
+		label1.setFont(new Font("굴림", Font.BOLD, 20));
+		
 		pwbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(idtf.getText().equals("admin") && phonetf.getText().equals("01012345678")) {
-					JOptionPane.showMessageDialog(null, "비밀번호는 1234 입니다.", "비밀번호", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, label1, "비밀번호", JOptionPane.INFORMATION_MESSAGE);
 					setVisible(false);
 				} else if(!(idtf.getText().equals("admin")) && phonetf.getText().equals("01012345678")) {
 					iderrorjb.setVisible(false);

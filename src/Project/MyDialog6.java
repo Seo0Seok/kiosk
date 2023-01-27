@@ -92,7 +92,10 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 				setVisible(false); // 비활성화
 			}
 		});
-
+		
+		JLabel label2 = new JLabel("메뉴명, 수량을 정확히 입력하세요.");
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
+		
 		okbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,14 +104,17 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 					int num = Integer.parseInt(numtf.getText()); // 재고수량
 					String query = "update menu set stock = " + num + " where name = '" + menuname + "'";
 					int n = chicken.stmt.executeUpdate(query);
+					
+					JLabel label1 = new JLabel(menuname + " " + num + "개로 수정되었습니다.");
+					label1.setFont(new Font("굴림", Font.BOLD, 20));
+					
 					if(n >= 1) {
-						JOptionPane.showMessageDialog(null, menuname + " " + num + "개로 수정되었습니다.", "재고수정", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
 						menutf.setText("");
 						numtf.setText("");
 						chicken.stocklb[jComboBox.getSelectedIndex()].setText("재고 : " + num + "개");
-						System.out.println(menuname + " " + num + "개로 수정되었습니다.");
 					} else {
-						JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 						menutf.setText("");
 						numtf.setText("");
 					}
@@ -116,7 +122,7 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 					System.out.println("SQL 실행오류");
 					System.out.println(e1.getMessage());
 				} catch(NumberFormatException e1) {
-					JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 					return;
 				} 
 			}
@@ -130,14 +136,17 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 						int num = Integer.parseInt(numtf.getText()); // 재고수량
 						String query = "update menu set stock = " + num + " where name = '" + menuname + "'";
 						int n = chicken.stmt.executeUpdate(query);
+
+						JLabel label1 = new JLabel(menuname + " " + num + "개로 수정되었습니다.");
+						label1.setFont(new Font("굴림", Font.BOLD, 20));
+						
 						if(n >= 1) {
-							JOptionPane.showMessageDialog(null, menuname + " " + num + "개로 수정되었습니다.", "재고수정", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
 							menutf.setText("");
 							numtf.setText("");
 							chicken.stocklb[jComboBox.getSelectedIndex()].setText("재고 : " + num + "개");
-							System.out.println(menuname + " " + num + "개로 수정되었습니다.");
 						} else {
-							JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 							menutf.setText("");
 							numtf.setText("");
 						}
@@ -145,7 +154,7 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 						System.out.println("SQL 실행오류");
 						System.out.println(e1.getMessage());
 					} catch(NumberFormatException e1) {
-						JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}
@@ -160,21 +169,24 @@ public class MyDialog6 extends JDialog { // 재고수정 화면
 						int num = Integer.parseInt(numtf.getText()); // 재고수량
 						String query = "update menu set stock = " + num + " where name = '" + menuname + "'";
 						int n = chicken.stmt.executeUpdate(query);
+						
+						JLabel label1 = new JLabel(menuname + " " + num + "개로 수정되었습니다.");
+						label1.setFont(new Font("굴림", Font.BOLD, 20));
+						
 						if(n >= 1) {
-							JOptionPane.showMessageDialog(null, menuname + " " + num + "개로 수정되었습니다.", "재고수정", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
 							menutf.setText("");
 							numtf.setText("");
 							chicken.stocklb[jComboBox.getSelectedIndex()].setText("재고 : " + num + "개");
-							System.out.println(menuname + " " + num + "개로 수정되었습니다.");
 						} else {
-							JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 							menutf.setText("");
 							numtf.setText("");
 						}
 					} catch (SQLException e1) {
 						System.out.println("SQL 실행오류");
 					} catch(NumberFormatException e1) {
-						JOptionPane.showMessageDialog(null,"메뉴명, 수량을 정확히 입력하세요.", "재고수정", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,label2, "재고수정", JOptionPane.ERROR_MESSAGE);
 						return;
 					}
 				}
