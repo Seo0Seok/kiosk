@@ -134,16 +134,17 @@ public class MyDialog1 extends JDialog { // 주문내역
 		@Override
 		public void run() {
 			int n = 5;
-			JLabel label2 = new JLabel(n + "");
+			JLabel label2 = new JLabel(); 
 			label2.setFont(new Font("굴림", Font.BOLD, 20));
 			label2.setForeground(Color.RED);
 			
 			while(true) {
-				closelb.setText(label2.getText() + "초 후에 창이 닫힙니다.");
+				label2 = new JLabel(n + "");
 				n--;
+				closelb.setText(label2.getText() + "초 후에 창이 닫힙니다.");
 				if(n == -1) {
 					MyDialog1.this.setVisible(false);
-					break;
+					n = 5;
 				}
 				try {
 					Thread.sleep(1000);
