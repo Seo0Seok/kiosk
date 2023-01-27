@@ -36,12 +36,13 @@ public class MyDialog8 extends JDialog { // 카드 투입 화면
 		
 		add(cardbt);
 		add(panel);
-		dialog9 = new MyDialog9(chicken, "카드 결제 중");
+		
 		
 		cardbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				dialog9 = new MyDialog9(chicken, "카드 결제 중");
 				dialog9.setVisible(true);
 			}
 		});
