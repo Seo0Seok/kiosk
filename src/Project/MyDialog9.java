@@ -13,25 +13,64 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MyDialog9 extends JDialog { // 카드 결제 화면
-	private MyPanel panel = new MyPanel();
+	private MyPanel panel = new MyPanel(null);
 	
 	public MyDialog9(Chicken chicken, String title) {
 		super(chicken, title, true);
 		setResizable(false);
 		setSize(500, 600);
 		
+		JLabel label = new JLabel();
+		MyPanel runnable = new MyPanel(label);
+		Thread th = new Thread(runnable);
+		
+		label.setFont(new Font("Gothic", Font.ITALIC, 65));
+		
+		add(label);
 		add(panel);
-		setVisible(true);
-
+		
+		th.start();
 	}
 	
-	class MyPanel extends JPanel{
+	class MyPanel extends JPanel implements Runnable{
 		private ImageIcon icon = new ImageIcon("image/카드결제.PNG");
 		private Image img = icon.getImage();
+		
+		JLabel label;
+		
+		MyPanel(JLabel label){
+			this.label = label;
+		}
+		
+		@Override
+		public void run() {
+			int n = 3;
+			while(true) {
+				label.setText(Integer.toString(n));
+				n--;
+				label.setBounds(215, 200, 60, 60);
+				
+				if(n == -1) {
+					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다!!", "결제 완료", JOptionPane.INFORMATION_MESSAGE);
+					this.setVisible(false);
+					break;
+				}
+				try {
+					Thread.sleep(1000);
+				}
+				catch(InterruptedException e) {
+					return;
+				}
+			}
+		
+		}
+	
+	
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.drawImage(img, 0, 0, getWidth(), getHeight(), this); 
