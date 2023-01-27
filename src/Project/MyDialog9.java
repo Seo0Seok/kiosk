@@ -59,7 +59,7 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 					JOptionPane.showMessageDialog(null, label2, "결제 완료", JOptionPane.INFORMATION_MESSAGE);
 					MyDialog9.this.setVisible(false);
 					break;
-				}
+				} 
 				try {
 					Thread.sleep(1000);
 				}
