@@ -57,7 +57,7 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 				
 				if(n == -1) {
 					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다!!", "결제 완료", JOptionPane.INFORMATION_MESSAGE);
-					this.setVisible(false);
+					MyDialog9.this.setVisible(false);
 					break;
 				}
 				try {
