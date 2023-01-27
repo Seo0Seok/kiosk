@@ -20,8 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import Project.MyDialog9.MyPanel;
-
 public class MyDialog1 extends JDialog { // 주문내역
 	JLabel jb = new JLabel("주문내역");
 	JLabel jb1 = new JLabel("음식명");
@@ -36,7 +34,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 	JLabel num = new JLabel("", JLabel.CENTER);
 	JLabel price = new JLabel("", JLabel.RIGHT);
 
-	private MyPanel panel = new MyPanel(closelb);
+	private MyPanel panel = new MyPanel(closelb, this);
 	JPanel textpanel = new JPanel();
 
 	public MyDialog1(Chicken chicken, String title) {
@@ -68,8 +66,8 @@ public class MyDialog1 extends JDialog { // 주문내역
 		closelb.setLocation(50, 680);
 		closelb.setFont(new Font("굴림", Font.BOLD, 35));
 		
-		MyPanel runnable = new MyPanel(closelb);
-		Thread th = new Thread(runnable);
+//		MyPanel runnable = new MyPanel(closelb, this);
+//		Thread th = new Thread(runnable);
 
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
 		menu.setVerticalAlignment(JLabel.TOP);
@@ -111,7 +109,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 		add(js);
 		add(panel);
 		
-		th.start();
+//		th.start();
 
 		setSize(500, 850);
 
@@ -122,45 +120,46 @@ public class MyDialog1 extends JDialog { // 주문내역
 			}
 		});
 	}
-
-	class MyPanel extends JPanel implements Runnable{
+}
+class MyPanel extends JPanel implements Runnable{
+	
+	JLabel closelb;
+	MyDialog1 d;
+	MyPanel(JLabel closelb, MyDialog1 d){
+		this.closelb = closelb;
+		this.d = d;
+	}
+	
+	@Override
+	public void run() {
+		int n = 5;
+		JLabel label2 = new JLabel(); 
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
+		label2.setForeground(Color.RED);
 		
-		JLabel closelb;
-		
-		MyPanel(JLabel closelb){
-			this.closelb = closelb;
-		}
-		
-		@Override
-		public void run() {
-			int n = 5;
-			JLabel label2 = new JLabel(); 
-			label2.setFont(new Font("굴림", Font.BOLD, 20));
-			label2.setForeground(Color.RED);
-			
-			while(true) {
-				label2 = new JLabel(n + "");
-				n--;
-				closelb.setText(label2.getText() + "초 후에 창이 닫힙니다.");
-				if(n == -1) {
-					MyDialog1.this.setVisible(false);
-					n = 5;
-				}
-				try {
-					Thread.sleep(1000);
-				}
-				catch(InterruptedException e) {
-					return;
-				}
+		while(true) {
+			label2 = new JLabel(n + "");
+			n--;
+			closelb.setText(label2.getText() + "초 후에 창이 닫힙니다.");
+			if(n == -1) {
+				d.setVisible(false);
+				n = 5;
+				return; // 스레드 종료
 			}
-		
+			try {
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e) {
+				return;
+			}
 		}
-		
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.drawLine(30, 100, 450, 100);
-			g.drawLine(30, 160, 450, 160);
-			g.drawLine(30, 630, 450, 630);
-		}
+	
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawLine(30, 100, 450, 100);
+		g.drawLine(30, 160, 450, 160);
+		g.drawLine(30, 630, 450, 630);
 	}
 }

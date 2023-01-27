@@ -289,7 +289,9 @@ public class Chicken extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dialog1.setVisible(true);
-
+				MyPanel runnable = new MyPanel(dialog1.closelb, dialog1);
+				Thread th = new Thread(runnable);
+				th.start();
 			}
 		});
 
@@ -495,6 +497,9 @@ public class Chicken extends JFrame {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								dialog1.setVisible(true);
+								MyPanel runnable = new MyPanel(dialog1.closelb, dialog1);
+								Thread th = new Thread(runnable);
+								th.start();
 								dialog2.setVisible(false);
 								
 								String query = "update menu set stock = " + prstock + " where name = '" + menu[j] + "'";
