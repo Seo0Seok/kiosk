@@ -66,9 +66,6 @@ public class MyDialog1 extends JDialog { // 주문내역
 		closelb.setLocation(50, 680);
 		closelb.setFont(new Font("굴림", Font.BOLD, 35));
 		
-//		MyPanel runnable = new MyPanel(closelb, this);
-//		Thread th = new Thread(runnable);
-
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
 		menu.setVerticalAlignment(JLabel.TOP);
 		
@@ -109,8 +106,6 @@ public class MyDialog1 extends JDialog { // 주문내역
 		add(js);
 		add(panel);
 		
-//		th.start();
-
 		setSize(500, 850);
 
 		closebt.addActionListener(new ActionListener() {
