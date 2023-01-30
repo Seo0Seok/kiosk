@@ -116,7 +116,14 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 									chicken.stock[i] = srs.getInt("stock");
 								}
 							chicken.stocklb[i].setText("재고 : " + Integer.parseInt(tf.getText()) + "개");
+							
+							if(chicken.stock[i] > 0) {
+								chicken.bt[i].setIcon(chicken.icon[i]);
+								} else if(chicken.stock[i] == 0) {
+									chicken.bt[i].setIcon(chicken.icon2);
+								}
 							}
+							
 							JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
 							tf.setText("");
 							tf.setFocusable(true);

@@ -34,7 +34,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 	JLabel num = new JLabel("", JLabel.CENTER);
 	JLabel price = new JLabel("", JLabel.RIGHT);
 
-	private MyPanel panel = new MyPanel(closelb, this);
+	private MyPanel2 panel = new MyPanel2(closelb, this);
 	JPanel textpanel = new JPanel();
 
 	public MyDialog1(Chicken chicken, String title) {
@@ -63,7 +63,7 @@ public class MyDialog1 extends JDialog { // 주문내역
 		sumlb.setFont(new Font("굴림", Font.BOLD, 30));
 		
 		closelb.setSize(400, 50);
-		closelb.setLocation(50, 680);
+		closelb.setLocation(50, 685);
 		closelb.setFont(new Font("굴림", Font.BOLD, 35));
 		
 		menu.setFont(new Font("굴림", Font.BOLD, 30));
@@ -116,11 +116,11 @@ public class MyDialog1 extends JDialog { // 주문내역
 		});
 	}
 }
-class MyPanel extends JPanel implements Runnable{
+class MyPanel2 extends JPanel implements Runnable{
 	
 	JLabel closelb;
 	MyDialog1 d;
-	MyPanel(JLabel closelb, MyDialog1 d){
+	MyPanel2(JLabel closelb, MyDialog1 d){
 		this.closelb = closelb;
 		this.d = d;
 	}
@@ -139,6 +139,7 @@ class MyPanel extends JPanel implements Runnable{
 			if(n == -1) {
 				d.setVisible(false);
 				n = 5;
+				closelb.setText("");
 				return; // 스레드 종료
 			}
 			try {
@@ -148,7 +149,6 @@ class MyPanel extends JPanel implements Runnable{
 				return;
 			}
 		}
-	
 	}
 	
 	public void paintComponent(Graphics g) {

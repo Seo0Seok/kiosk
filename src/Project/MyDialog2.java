@@ -19,7 +19,6 @@ import javax.swing.JTextArea;
 
 public class MyDialog2 extends JDialog { // 장바구니
 	
-	private MyDialog1 dialog1;
 	private MyDialog8 dialog8;	
 	
 	JLabel jb = new JLabel("장바구니");
@@ -127,7 +126,6 @@ public class MyDialog2 extends JDialog { // 장바구니
 		add(panel);
 		
 		setSize(500, 850);
-		dialog1 = new MyDialog1(chicken, "주문내역");
 		dialog8 = new MyDialog8(chicken, "카드투입");
 		
 		JLabel label1 = new JLabel("메뉴를 선택해주세요.");
@@ -143,8 +141,7 @@ public class MyDialog2 extends JDialog { // 장바구니
 					JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					dialog1.setVisible(true);
-					//dialog8.setVisible(true);
+					dialog8.setVisible(true);
 					menu.setText("");
 					num.setText("");
 					price.setText("");

@@ -29,13 +29,14 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 		JLabel label = new JLabel();
 		MyPanel runnable = new MyPanel(label);
 		Thread th = new Thread(runnable);
+		th.start();
+		
 		
 		label.setFont(new Font("Gothic", Font.ITALIC, 65));
-		dialog1 = new MyDialog1(chicken, "주문내역");
+		dialog1 = chicken.dialog1;
 		
 		add(label);
 		add(panel);
-		th.start();
 	}
 	
 	class MyPanel extends JPanel implements Runnable{
@@ -60,7 +61,7 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 				if(n == -1) {
 					JOptionPane.showMessageDialog(null, label2, "결제 완료", JOptionPane.INFORMATION_MESSAGE);
 					MyDialog9.this.setVisible(false);
-					dialog1.setVisible(true);	
+					dialog1.setVisible(true);
 					break;
 				} 
 				try {
@@ -70,7 +71,9 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 					return;
 				}
 			}
-		
+			MyPanel2 runnable2 = new MyPanel2(dialog1.closelb, dialog1);
+			Thread th2 = new Thread(runnable2);
+			th2.start();
 		}
 	
 	
