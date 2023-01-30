@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 
 public class MyDialog8 extends JDialog { // 카드 투입 화면
 	JButton cardbt = new JButton("카드투입하기");
-	ImageIcon icon = new ImageIcon("images/image0.jpg");
 	private MyPanel panel = new MyPanel();
 	MyDialog9 dialog9;
 	

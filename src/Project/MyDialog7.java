@@ -83,7 +83,6 @@ public class MyDialog7 extends JDialog { // 가격수정 화면
 		add(jb2);
 		add(tf2);
 		add(panel);
-//		setVisible(true);
 		closebt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

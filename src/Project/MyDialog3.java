@@ -96,6 +96,8 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 				if(tf.getText().equals("1234")) {
 					tf.setText("");
 					dialog4.setVisible(true);
+					dialog4.tf.setFocusable(true);
+					dialog4.tf.requestFocus();
 				}  else if(tf.getText().equals("")) {
 					tf.setText("");
 					errorjb.setVisible(false);

@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 
 public class MyDialog9 extends JDialog { // 카드 결제 화면
 	private MyPanel panel = new MyPanel(null);
+	private MyDialog1 dialog1;
+	
 	public MyDialog9(Chicken chicken, String title) {
 		super(chicken, title, true);
 		setResizable(false);
@@ -29,7 +31,7 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 		Thread th = new Thread(runnable);
 		
 		label.setFont(new Font("Gothic", Font.ITALIC, 65));
-		
+		dialog1 = new MyDialog1(chicken, "주문내역");
 		
 		add(label);
 		add(panel);
@@ -58,6 +60,7 @@ public class MyDialog9 extends JDialog { // 카드 결제 화면
 				if(n == -1) {
 					JOptionPane.showMessageDialog(null, label2, "결제 완료", JOptionPane.INFORMATION_MESSAGE);
 					MyDialog9.this.setVisible(false);
+					dialog1.setVisible(true);	
 					break;
 				} 
 				try {

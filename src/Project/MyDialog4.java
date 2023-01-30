@@ -23,8 +23,9 @@ import javax.swing.JTextField;
 public class MyDialog4 extends JDialog { // 관리자 메인 화면
 	JButton stockbt1 = new JButton("재고 관리");
 	JButton pricebt = new JButton("가격 수정");
-	JButton adminbt = new JButton("재고 일괄 변경");
+	JButton adminbt = new JButton("재고 일괄 변경 -> ");
 	JButton closebt = new JButton("닫기");
+	JTextField tf = new JTextField("");
 	JPanel panel = new JPanel();
 	
 	private MyDialog6 dialog6;
@@ -41,11 +42,15 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 		stockbt1.setBackground(new Color(0, 0, 100));
 		stockbt1.setFont(new Font("굴림", Font.BOLD, 30));
 		
-		adminbt.setBounds(30, 250, 250, 55);
+		adminbt.setBounds(30, 230, 300, 55);
 		adminbt.setOpaque(true);
 		adminbt.setForeground(Color.WHITE);
 		adminbt.setBackground(Color.RED);
 		adminbt.setFont(new Font("굴림", Font.BOLD, 30));
+		
+		tf.setBounds(350, 230, 60, 55);
+		tf.setFont(new Font("굴림", Font.BOLD, 30));
+		tf.setHorizontalAlignment(JTextField.CENTER);
 		
 		pricebt.setBounds(250, 100, 190, 110);
 		pricebt.setOpaque(true);
@@ -63,6 +68,7 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 		add(adminbt);
 		add(pricebt);
 		add(closebt);
+		add(tf);
 		add(panel);
 		
 
@@ -87,30 +93,40 @@ public class MyDialog4 extends JDialog { // 관리자 메인 화면
 			}
 		});
 		
-		JLabel label1 = new JLabel("재고가 일괄 10개로 수정되었습니다.");
-		label1.setFont(new Font("굴림", Font.BOLD, 20));
+		
+		JLabel label2 = new JLabel("일괄수정 할 개수를 입력하세요.");
+		label2.setFont(new Font("굴림", Font.BOLD, 20));
 		
 		adminbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					ResultSet srs; 
-					String query = "update menu set stock = 10";
-					int n = chicken.stmt.executeUpdate(query);
-					if(n >= 1) {
-						for(int i=0; i<chicken.menu.length; i++) {
-							srs = chicken.stmt.executeQuery("select * from menu where num = " + i + "");
-							if(srs.next()) {
-								chicken.stock[i] = srs.getInt("stock");
+				if(tf.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, label2, "알림", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JLabel label1 = new JLabel("재고가 일괄 " + Integer.parseInt(tf.getText()) + "개로 수정되었습니다.");
+					label1.setFont(new Font("굴림", Font.BOLD, 20));
+					try {
+						ResultSet srs; 
+						String query = "update menu set stock = " + Integer.parseInt(tf.getText());
+						int n = chicken.stmt.executeUpdate(query);
+						if(n >= 1) {
+							for(int i=0; i<chicken.menu.length; i++) {
+								srs = chicken.stmt.executeQuery("select * from menu where num = " + i + "");
+								if(srs.next()) {
+									chicken.stock[i] = srs.getInt("stock");
+								}
+							chicken.stocklb[i].setText("재고 : " + Integer.parseInt(tf.getText()) + "개");
 							}
-						chicken.stocklb[i].setText("재고 : 10개");
-						}
-						JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, label1, "재고수정", JOptionPane.INFORMATION_MESSAGE);
+							tf.setText("");
+							tf.setFocusable(true);
+							tf.requestFocus();
+						} 
+					} catch (SQLException e1) {
+						System.out.println("SQL 실행오류");
+						System.out.println(e1.getMessage());
 					} 
-				} catch (SQLException e1) {
-					System.out.println("SQL 실행오류");
-					System.out.println(e1.getMessage());
-				} 
+				}
 			}
 		});
 		

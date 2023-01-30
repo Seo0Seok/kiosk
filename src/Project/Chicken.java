@@ -57,7 +57,7 @@ public class Chicken extends JFrame {
 		JButton plusbt[] = new JButton[menu.length];
 		JButton minusbt[] = new JButton[menu.length];
 		stocklb = new JLabel[menu.length];
-		TextField num[] = new TextField[menu.length];
+		JTextField num[] = new JTextField[menu.length];
 
 		// 메인화면 구성
 		JLabel tableNum = new JLabel("1번 테이블");
@@ -84,15 +84,15 @@ public class Chicken extends JFrame {
 		mainPanel.setBackground(Color.BLACK);
 		mainPanel.setLayout(null);
 
-		imgPanel.setBounds(250, 100, 870, 660);
+		imgPanel.setBounds(250, 100, 870, 670);
 		imgPanel.setBackground(Color.BLACK);
 		imgPanel.setLayout(null);
 
-		imgPanel2.setBounds(250, 100, 870, 660);
+		imgPanel2.setBounds(250, 100, 870, 670);
 		imgPanel2.setBackground(Color.BLACK);
 		imgPanel2.setLayout(null);
 
-		imgPanel3.setBounds(250, 100, 870, 660);
+		imgPanel3.setBounds(250, 100, 870, 670);
 		imgPanel3.setBackground(Color.BLACK);
 		imgPanel3.setLayout(null);
 
@@ -152,7 +152,8 @@ public class Chicken extends JFrame {
 			bt[i] = new JButton(menu[i]);
 			plusbt[i] = new JButton("+");
 			minusbt[i] = new JButton("-");
-			num[i] = new TextField("0");
+			num[i] = new JTextField("0");
+			num[i].setHorizontalAlignment(JTextField.CENTER);
 			if (i < 3) { // 메인버튼 첫 줄 3개
 				bt[i].setBounds(i * 300, 0, 250, 200);
 				imgPanel.add(bt[i]);
@@ -201,7 +202,7 @@ public class Chicken extends JFrame {
 			if (i < 3) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 190, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel.add(plusbt[i]);
@@ -212,7 +213,7 @@ public class Chicken extends JFrame {
 			} else if (i < 6) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel.add(plusbt[i]);
@@ -223,7 +224,7 @@ public class Chicken extends JFrame {
 			} else if (i < 9) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel2.add(plusbt[i]);
@@ -234,7 +235,7 @@ public class Chicken extends JFrame {
 			} else if (i < 12) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel2.add(plusbt[i]);
@@ -245,7 +246,7 @@ public class Chicken extends JFrame {
 			} else if (i < 15) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 200, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel3.add(plusbt[i]);
@@ -256,7 +257,7 @@ public class Chicken extends JFrame {
 			} else if (i < 18) {
 				l[i].setBounds(bt[i].getX(), l[i].getY() + 540, 250, 80);
 				stocklb[i].setBounds(bt[i].getX(), l[i].getY() + 58, 170, 100);
-				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 80, 60, 50);
+				num[i].setBounds(l[i].getX() + 190, l[i].getY() + 85, 60, 45);
 				plusbt[i].setBounds(bt[i].getX() + 180, l[i].getY() + 10, 60, 60);
 				minusbt[i].setBounds(bt[i].getX() + 10, l[i].getY() + 10, 60, 60);
 				imgPanel3.add(plusbt[i]);
@@ -291,7 +292,7 @@ public class Chicken extends JFrame {
 				dialog1.setVisible(true);
 				MyPanel runnable = new MyPanel(dialog1.closelb, dialog1);
 				Thread th = new Thread(runnable);
-				th.start();
+		//		th.start();
 			}
 		});
 
@@ -456,13 +457,16 @@ public class Chicken extends JFrame {
 									e1.printStackTrace();
 								}
 								stocklb[j].setText("재고 : " + stock[j] + "개");
+								for(int j = 0; j<menu.length; j++) {
 								num[j].setText("0");
+								}
 								cnt = 0;
 								sum = 0;
+								sum3 = 0;
 								dialog1.menu.setText("");
 								dialog1.num.setText("");
 								dialog1.price.setText("");
-								dialog1.sumlb.setText("합계  :    원");
+								dialog1.sumlb.setText("합계  :    ");
 								bt[j].setEnabled(true);
 								}
 						});
@@ -484,6 +488,7 @@ public class Chicken extends JFrame {
 								stocklb[j].setText("재고 : " + stock[j] + "개");
 								cnt = 0;
 								sum = 0;
+								sum3 = 0;
 								dialog1.menu.setText("");
 								dialog1.num.setText("");
 								dialog1.price.setText("");
@@ -496,10 +501,6 @@ public class Chicken extends JFrame {
 						dialog2.orderbt.addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								dialog1.setVisible(true);
-								MyPanel runnable = new MyPanel(dialog1.closelb, dialog1);
-								Thread th = new Thread(runnable);
-								th.start();
 								dialog2.setVisible(false);
 								
 								String query = "update menu set stock = " + prstock + " where name = '" + menu[j] + "'";
@@ -588,7 +589,6 @@ public class Chicken extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		//new Start();
 		Chicken chicken = new Chicken();
 
 	}

@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 public class MyDialog2 extends JDialog { // 장바구니
 	
 	private MyDialog1 dialog1;
-	private MyDialog8 dialog8; // 카드 투입 화면
+	private MyDialog8 dialog8;	
 	
 	JLabel jb = new JLabel("장바구니");
 	JLabel tableNum = new JLabel("1번 테이블");
@@ -143,11 +143,12 @@ public class MyDialog2 extends JDialog { // 장바구니
 					JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
+					dialog1.setVisible(true);
+					//dialog8.setVisible(true);
 					menu.setText("");
 					num.setText("");
 					price.setText("");
 					sumlb.setText("합계 : ");
-					dialog8.setVisible(true);	
 				}
 				}
 		});
