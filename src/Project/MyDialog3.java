@@ -1,6 +1,7 @@
 package Project;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -88,25 +90,26 @@ public class MyDialog3 extends JDialog { // 관리자 로그인 화면
 				setVisible(false); // 비활성화
 			}
 		});
+		
 		dialog4 = new MyDialog4(chicken, "관리자 화면");
 		loginbt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-				if(tf.getText().equals("1234")) {
-					tf.setText("");
-					dialog4.setVisible(true);
-					dialog4.tf.setFocusable(true);
-					dialog4.tf.requestFocus();
-				}  else if(tf.getText().equals("")) {
-					tf.setText("");
-					errorjb.setVisible(false);
-					errorjb2.setVisible(true);
-				} else {
-					tf.setText("");
-					errorjb2.setVisible(false);
-					errorjb.setVisible(true);
-				}
+						if(tf.getText().equals("1234")) {
+							tf.setText("");
+							dialog4.setVisible(true);
+							dialog4.tf.setFocusable(true);
+							dialog4.tf.requestFocus();
+						}  else if(tf.getText().equals("")) {
+							tf.setText("");
+							errorjb.setVisible(false);
+							errorjb2.setVisible(true);
+						} else {
+							tf.setText("");
+							errorjb2.setVisible(false);
+							errorjb.setVisible(true);
+						}
 				} catch(NumberFormatException e1) {
 					return;
 				}

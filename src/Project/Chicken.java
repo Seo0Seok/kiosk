@@ -30,6 +30,7 @@ public class Chicken extends JFrame {
 	int price[] = new int[menu.length];
 	int stock[] = new int[menu.length];
 	int prstock;
+	String menu2;
 	// 메뉴, 가격, 버튼, 라벨, 이미지 배열
 			JButton bt[] = new JButton[menu.length];
 			ImageIcon icon[] = new ImageIcon[menu.length];
@@ -375,8 +376,8 @@ public class Chicken extends JFrame {
 					cnt = Integer.parseInt(num[j].getText());
 					stock[j] = stock[j] - cnt;
 					prstock = stock[j];
+					menu2 = menu[j];
 					sum2 = 0;
-					
 					
 					if (Integer.parseInt(num[j].getText()) > 0 && prstock >= 0) {
 						dialog2.setVisible(true);
@@ -475,67 +476,10 @@ public class Chicken extends JFrame {
 								cnt = 0;
 								sum = 0;
 								sum3 = 0;
-								bt[j].setEnabled(true);
 								}
 						});
 						
 						
-						dialog2.orderbt.addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								dialog2.setVisible(false);
-								
-								String tempMenu1 = dialog1.menu.getText();
-								String menustr1 = "";
-								if(tempMenu1.equals("")) {
-									menustr1 = "<html>" + menu[j] + "</html>"; 
-								} else {
-									tempMenu1 = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7);
-									menustr1 = "<html>" + tempMenu1 + "<br>" + menu[j] + "</html>"; 
-								}
-								dialog1.menu.setText(menustr1);
-								
-								String tempNum1 = dialog1.num.getText();
-								String numstr1 = "";
-								if(tempNum1.equals("")) {
-									numstr1 = "<html>" + cnt + "</html>"; 
-								} else {
-									tempNum1 = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
-									numstr1 = "<html>" + tempNum1 + "<br>" + cnt + "</html>"; 
-								}
-								dialog1.num.setText(numstr1);
-								
-								String tempPrice1 = dialog1.price.getText();
-								String pricestr1 = "";
-								if(tempPrice1.equals("")) {
-									pricestr1 = "<html>" + price[j] * cnt + "</html>"; 
-								} else {
-									tempPrice1 = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
-									pricestr1 = "<html>" + tempPrice1 + "<br>" + price[j] * cnt + "</html>"; 
-								}
-								dialog1.price.setText(pricestr1);
-								dialog1.sumlb.setText("합계 : " + sum3  + "원" + "\n");
-								
-								String query = "update menu set stock = " + prstock + " where name = '" + menu[j] + "'";
-								try {
-									stmt.executeUpdate(query);
-									for(int j=0; j<menu.length; j++) {
-										if(stock[j] > 0) {
-											bt[j].setIcon(icon[j]);
-										} else {
-											bt[j].setIcon(icon2);
-										}
-									}
-								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								num[j].setText("0");
-								cnt = 0;
-								sum = 0;
-								
-							}
-						});
 					
 					} else if(Integer.parseInt(num[j].getText()) == 0 && prstock == 0){
 						JOptionPane.showMessageDialog(null, label2, "알림", JOptionPane.ERROR_MESSAGE);
@@ -551,6 +495,67 @@ public class Chicken extends JFrame {
 				}
 			});
 		}
+		
+		dialog2.orderbt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog2.setVisible(false);
+				
+				String tempMenu1 = dialog1.menu.getText();
+				String menustr1 = "";
+				if(tempMenu1.equals("")) {
+					menustr1 = dialog2.menu.getText(); 
+					System.out.println(dialog2.menu.getText());
+				} else {
+					tempMenu1 = dialog1.menu.getText().substring(6, dialog1.menu.getText().length()-7);
+					menustr1 = "<html>" + tempMenu1 + "<br>" + dialog2.menu.getText().substring(6, dialog2.menu.getText().length()-7) + "</html>"; 
+				}
+				dialog1.menu.setText(menustr1);
+				
+				String tempNum1 = dialog1.num.getText();
+				String numstr1 = "";
+				if(tempNum1.equals("")) {
+					numstr1 = dialog2.num.getText(); 
+				} else {
+					tempNum1 = dialog1.num.getText().substring(6, dialog1.num.getText().length()-7);
+					numstr1 = "<html>" + tempNum1 + "<br>" + dialog2.num.getText().substring(6, dialog2.num.getText().length()-7) + "</html>"; 
+				}
+				dialog1.num.setText(numstr1);
+				
+				String tempPrice1 = dialog1.price.getText();
+				String pricestr1 = "";
+				if(tempPrice1.equals("")) {
+					pricestr1 = dialog2.price.getText(); 
+				} else {
+					tempPrice1 = dialog1.price.getText().substring(6, dialog1.price.getText().length()-7);
+					pricestr1 = "<html>" + tempPrice1 + "<br>" + dialog2.price.getText().substring(6, dialog2.price.getText().length()-7) + "</html>"; 
+				}
+				dialog1.price.setText(pricestr1);
+				dialog1.sumlb.setText("합계 : " + sum3  + "원" + "\n");
+				
+				String query = "update menu set stock = " + prstock + " where name = '" + menu2 + "'";
+				try {
+					stmt.executeUpdate(query);
+					for(int j=0; j<menu.length; j++) {
+						num[j].setText("0");
+						if(stock[j] > 0) {
+							bt[j].setIcon(icon[j]);
+						} else {
+							bt[j].setIcon(icon2);
+						}
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+				
+				sum = 0;
+				cnt = 0;
+				
+			}
+		});
+		
+		
 		
 		
 		for (int i = 0; i < menu.length; i++) {
@@ -584,6 +589,12 @@ public class Chicken extends JFrame {
 						JOptionPane.showMessageDialog(null, label1, "알림", JOptionPane.ERROR_MESSAGE);
 					} 
 					num[j].setText(Integer.toString(cnt));
+					
+						if(stock[j] > 0) {
+							bt[j].setIcon(icon[j]);
+						} else {
+							bt[j].setIcon(icon2);
+						}
 				}
 			});
 		}

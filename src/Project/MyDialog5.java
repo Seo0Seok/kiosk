@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -113,6 +115,23 @@ public class MyDialog5 extends JDialog { // 관리자 비밀번호 찾기 화면
 					phoneerrorjb.setVisible(false);
 					iderrorjb.setVisible(true);
 					phoneerrorjb.setVisible(true);
+				}
+				
+			}
+		});
+		
+		phonetf.addKeyListener(new KeyAdapter() {
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if((e.getKeyCode() > 48 && e.getKeyCode() < 57) 
+				      || e.getKeyCode() == KeyEvent.VK_BACK_SPACE 
+				      || e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT 
+				      || e.getKeyCode() == KeyEvent.VK_DELETE 
+				      || e.getKeyCode() == KeyEvent.VK_ENTER) {
+				} else {
+					JOptionPane.showMessageDialog(null, "숫자만 입력 가능합니다.", "경고", JOptionPane.ERROR_MESSAGE);
+					phonetf.setText("");
 				}
 				
 			}
